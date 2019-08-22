@@ -1,5 +1,3 @@
-![Logo for Unified Government of Wyandotte County and Kansas City, Kansas](https://www.wycokck.org/WycoKCK/media/WycoKCK/CSS/logo.png)
-
 # NRA Calculator
 
 This is a mono-repo that contains the front-end and (eventual) back-end of the NRA Calculator project.
@@ -13,6 +11,8 @@ Phase 1: A real estate tax abatement calculator for KCK/Wyandotte's Neighborhood
 - [ ] Complete
 
 # The Neighborhood Revitalization Act
+
+![Logo for Unified Government of Wyandotte County and Kansas City, Kansas](https://www.wycokck.org/WycoKCK/media/WycoKCK/CSS/logo.png)
 
 The NRA is an effort by the Unified Government of Wyandotte County and Kansas City, Kansas to promote revitalization, conservation, and redevelopment of designated areas through tax rebate incentives on new construction and improvements.
 
