@@ -4,12 +4,6 @@ This is a mono-repo that contains the front-end and (eventual) back-end of the N
 
 Phase 1: A real estate tax abatement calculator for KCK/Wyandotte's Neighborhood Revitalization Act.
 
-- [ ] Discover | Design <= YOU ARE HERE
-- [ ] Bootstrap
-- [ ] Design | Build | Iterate
-- [ ] Release
-- [ ] Complete
-
 # The Neighborhood Revitalization Act
 
 ![Logo for Unified Government of Wyandotte County and Kansas City, Kansas](https://www.wycokck.org/WycoKCK/media/WycoKCK/CSS/logo.png)

@@ -1,0 +1,52 @@
+$color-main: rgb(80, 121, 175);
+
+body {
+  font-family: "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: 500;
+  color: $color-main;
+}
+
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: $color-main;
+  &:hover {
+    color: black;
+  }
+  &:active {
+    color: lightgray;
+  }
+}
+
+button {
+  color: white;
+  font-size: 1em;
+  border: none;
+  background-color: #c63f3f;
+  padding: 0.75em;
+  border-bottom: 2px solid #721d1d;
+  border-right: 2px solid #721d1d;
+  transition: 250ms;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transition: 0ms;
+    background-color: #db6a6a;
+    border-bottom-color: #c63f3f;
+    border-right-color: #c63f3f;
+  }
+}
