@@ -21,6 +21,16 @@ export const getNRAEstimates = (startingValue, estValueAfterImprovements, zone) 
 
 }
 
+export const getZoneData = (zone) => {
+    // TODO: Get real zone/mill rate data
+    return {
+        millRateHigh: 100,
+        millRateLow: 80,
+        millRateAvg: 90,
+        incentiveYears: 10
+    }
+};
+
 // Calculate NRA tax incentive
 export const calculateRebate = (startingValue, estValueAfterImprovements, millRate, incentiveYears) => {
 
