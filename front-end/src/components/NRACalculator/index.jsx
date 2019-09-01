@@ -33,7 +33,8 @@ class NRACalculator extends React.Component {
       zone: parseInt(e.target.value),
     })
   }
-//will pass input values from state to backend as object
+
+  // Will pass input values from state to backend as object
   handleSubmit() {
     if (this.state.current && this.state.afterImprovements && this.state.zone) {
       this.setState({
