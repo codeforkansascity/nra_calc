@@ -1,6 +1,6 @@
 {
-  "short_name": "NRA Calculator",
-  "name": "Neighborhood Revitalization Act Calculator",
+  "short_name": "NRACalc",
+  "name": "Neighborhood Revitalization Act",
   "icons": [
     {
       "src": "favicon.ico",
