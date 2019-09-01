@@ -30,11 +30,13 @@ Currently, the team consists of:
 
 - Matt Cook: @mattcookxyz
 - Tim O'Connor: @timjoco
-- Blake
+- Blake Bradford: @blakebford3
 
 # Tech
 
-Proposed front-end technologies:
+See the README of the [front-end](front-end/README.md) and back-end portions of the project for more details:
+
+Front-end technologies:
 
 - React.js
 
