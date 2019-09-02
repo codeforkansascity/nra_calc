@@ -120,11 +120,13 @@ class NRACalculator extends React.Component {
 }
 
 function cleanNumber(num) {
+  // Remove $ and , symbols for calculation
   const cleanNum = num.toString().replace(/,*\$*/g, '');
   return parseInt(Math.floor(cleanNum));
 }
 
 function formatNumber(num) {
+  // This will limit to 2 decimals and add commas to thousands
   return num.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }
 
