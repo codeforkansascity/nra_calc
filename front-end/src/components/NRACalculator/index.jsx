@@ -50,7 +50,7 @@ class NRACalculator extends React.Component {
       <Grid textAlign='left' className="NRACalculator">
         <GridColumn>
           { this.state.estimates &&
-            <Message color="red" style={{ textAlign: 'center' }}>
+            <Message color="yellow" style={{ textAlign: 'center' }}>
               <p>Note: These estimates use fake mill rates, and are not yet accurate approximations.</p>
             </Message>}
           <Form size='large'>
