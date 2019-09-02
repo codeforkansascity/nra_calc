@@ -94,6 +94,7 @@ class NRACalculator extends React.Component {
               </Button>
 
               { this.state.estimates && <Segment basic textAlign="center">
+                <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
                 <p><b>Pay Per Year:</b> ${
                   formatNumber(this.state.estimates.estLow.payPerYear)
                   } - ${
