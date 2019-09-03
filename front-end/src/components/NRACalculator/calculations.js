@@ -1,6 +1,9 @@
-// TODO: What is this value from the excel spreadsheet?
-// Assessment ratio?
-const assessmentRatio = 0.115;
+// State-wide constant value
+const assessmentPercentage = 0.115;
+
+export const calculateTaxes = (amount, millRate) => {
+    return ((amount / 1000) * millRate) - 44;
+}
 
 export const getNRAEstimates = (startingValue, estValueAfterImprovements, zone) => {
 
@@ -35,18 +38,18 @@ export const getZoneData = (zone) => {
 export const calculateRebate = (startingValue, estValueAfterImprovements, millRate, incentiveYears) => {
 
     // Calculate current taxes
-    const currentAssessedValue = startingValue * assessmentRatio;
+    const currentAssessedValue = startingValue * assessmentPercentage;
     const currentTaxes = calculateTaxes(currentAssessedValue, millRate);
 
     // Calculate new taxes
     const fivePercentImprovements = (estValueAfterImprovements - startingValue) * 0.05;
     const newTaxableAmount = startingValue + fivePercentImprovements;
-    const newTaxableAmountAssessed = newTaxableAmount * assessmentRatio;
+    const newTaxableAmountAssessed = newTaxableAmount * assessmentPercentage;
     const newTaxes = calculateTaxes(newTaxableAmountAssessed, millRate);
 
     // Calculate incremental tax values
     const incrementalAppraisedValue = estValueAfterImprovements - fivePercentImprovements;
-    const incrementalAssessedValue = incrementalAppraisedValue * assessmentRatio;
+    const incrementalAssessedValue = incrementalAppraisedValue * assessmentPercentage;
     const incrementalTaxSavings = (incrementalAssessedValue / 1000) * millRate;
 
     // Calculate payments/savings per year
@@ -65,11 +68,5 @@ export const calculateRebate = (startingValue, estValueAfterImprovements, millRa
         savePerYear,
         savings
     }
-
-}
-
-export const calculateTaxes = (amount, millRate) => {
-
-    return ((amount / 1000) * millRate) - 44;
 
 }
