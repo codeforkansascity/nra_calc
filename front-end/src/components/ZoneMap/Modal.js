@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Image, Modal } from 'semantic-ui-react'
 import Map from './Map'
 
-//dummy image used as placeholder for interactive map.
+//popup modal containing Leaflet.js map
 
 class MapModal extends React.Component {
     render() {
