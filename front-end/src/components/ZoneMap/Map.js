@@ -14,7 +14,7 @@ class Map extends React.Component {
         scrollWheelZoom={true}
         dragging={true}
         animate={true}
-        easeLinearity={0.35}
+        easeLinearity={0.2}
       >
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
