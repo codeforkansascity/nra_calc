@@ -2,6 +2,7 @@
   "name": "nra-calc",
   "version": "0.1.0",
   "private": false,
+  "homepage": "https://codeforkc.org/nra_calc",
   "contributors": [
     {
       "name": "Matt Cook",
