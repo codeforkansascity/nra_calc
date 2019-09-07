@@ -4,9 +4,6 @@ import './App.scss';
 import AppFooter from './components/AppFooter';
 import NRACalculator from './components/NRACalculator';
 
-//basic modal to hold interactive map
-import MapModal from './components/ZoneMap/Modal';
-
 function App() {
   return (
     <div className="App">
@@ -17,7 +14,6 @@ function App() {
         tax rebate incentives on new construction and improvements. Please begin below to calculate
         the potential tax benefits for development of a given property.
       </p>
-      <MapModal />
       <NRACalculator></NRACalculator>
       <AppFooter>
         Created in partnership with <a href="https://codeforkc.org">Code for KC</a><br />

@@ -3,6 +3,7 @@ import './NRACalculator.scss';
 //import for Semantic-UI components
 import { Button, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
+import ZonePicker from '../ZonePicker';
 
 class NRACalculator extends React.Component {
   constructor(props) {
@@ -34,6 +35,10 @@ class NRACalculator extends React.Component {
     })
   }
 
+  setZoneFromMap = e => {
+      this.setState({ zone: 1 });
+  }
+
   // Will pass input values from state to backend as object
   handleSubmit() {
     if (this.state.current && this.state.afterImprovements && this.state.zone) {
@@ -45,7 +50,7 @@ class NRACalculator extends React.Component {
     }
   }
 
-  render() {
+  render = () => {
     return (
       <Grid textAlign='left' className="NRACalculator">
         <GridColumn>
@@ -82,8 +87,11 @@ class NRACalculator extends React.Component {
               <Form.Input
                 label="Zone"
                 placeholder='Zone'
+                value={this.state.zone ? this.state.zone : undefined}
                 onChange={this.handleZone}
               />
+
+              <ZonePicker setZoneFromMap={this.setZoneFromMap} />
 
               {/** Submit button **/}
               <Button color='blue'
