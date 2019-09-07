@@ -7,12 +7,11 @@ import NRACalculator from './components/NRACalculator';
 function App() {
   return (
     <div className="App">
-      <AppHeader>NRA Calculator</AppHeader>
+      <AppHeader>Neighborhood Revitalization Act Calculator</AppHeader>
       <p>
-        The Neighborhood Revitalization Act (NRA) is an effort by the Unified Government of Wyandotte County and 
-        Kansas City, Kansas to promote revitalization, conservation, and redevelopment of designated areas through
-        tax rebate incentives on new construction and improvements. Please begin below to calculate
-        the potential tax benefits for development of a given property.
+        This is an effort by the Unified Government of Wyandotte County and 
+        Kansas City, Kansas to promote revitalization of designated areas through
+        tax incentives on new construction and improvements. Start below to estimate your potential tax incentive.
       </p>
       <NRACalculator></NRACalculator>
       <AppFooter>
