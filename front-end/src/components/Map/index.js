@@ -12,8 +12,8 @@ class Map extends React.Component {
     }
   }
 
-  test = (input) => {
-      console.log(input);
+  getAreaFromClick = e => {
+      this.props.setZoneFromMap(e.layer.feature.properties.Name);
   }
 
   //load geoJSON containing zone polygons
@@ -37,8 +37,9 @@ class Map extends React.Component {
         <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
 
         <GeoJSON 
-        key={this.state.polygons}
-        data={this.state.polygons}
+          key={this.state.polygons}
+          data={this.state.polygons}
+          onClick={this.getAreaFromClick}
         />
         
         {/* setZoneFromMap sets the zone in the NRACalculator component */}

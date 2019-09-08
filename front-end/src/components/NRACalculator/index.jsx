@@ -36,7 +36,7 @@ class NRACalculator extends React.Component {
   }
 
   setZoneFromMap = e => {
-      this.setState({ zone: 1 });
+      this.setState({ zone: e });
   }
 
   // Will pass input values from state to backend as object
