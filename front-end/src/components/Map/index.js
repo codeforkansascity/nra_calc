@@ -7,8 +7,8 @@ class Map extends React.Component {
     super(props)
     this.state = {
       polygons: [],
-      position: [39.1155, -94.6268],
-      zoom: 12,
+      position: [39.1155, -94.7478],
+      zoom: 11,
     }
   }
 
@@ -19,11 +19,11 @@ class Map extends React.Component {
   //load geoJSON containing zone polygons
   async componentDidMount() {
     //API call
-    const response = await fetch(`https://opendata.arcgis.com/datasets/adb3297a0cb14d32b0274aaffa469538_0.geojson`)
+    const response = await fetch(`https://opendata.arcgis.com/datasets/adb3297a0cb14d32b0274aaffa469538_0.geojson`);
     const json = await response.json();
     this.setState({
       polygons: json,
-    })
+    });
     console.log(this.state.polygons)
   }
 
