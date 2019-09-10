@@ -3,6 +3,8 @@ import AppHeader from './components/AppHeader';
 import './App.scss';
 import AppFooter from './components/AppFooter';
 import NRACalculator from './components/NRACalculator';
+import Tabs from './Tabs';
+require('./tab_styles.css');
 
 function App() {
   return (
@@ -18,6 +20,17 @@ function App() {
         Created in partnership with <a href="https://codeforkc.org">Code for KC</a><br />
         Contribute code on <a href="https://github.com/codeforkansascity/nra_calc">Github</a>
       </AppFooter>
+      <Tabs>
+      <div label="About">
+        Information about the Neighborhood Revitalization Act.
+      </div>
+      <div label="Resources">
+        Helpful links to redirect users to additional material, application forms, etc.
+      </div>
+      <div label="Contact Us">
+        Contact information, links, emails, for people involved in this project
+      </div>
+    </Tabs>
     </div>
   );
 }
