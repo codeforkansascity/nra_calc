@@ -31,6 +31,7 @@ Currently, the team consists of:
 - Matt Cook: @mattcookxyz
 - Tim O'Connor: @timjoco
 - Blake Bradford: @blakebford3
+- Filipe Gomes: @filipe-gomes
 
 # Tech
 
