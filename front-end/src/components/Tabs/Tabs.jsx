@@ -20,6 +20,10 @@ class Tabs extends Component {
     this.setState({ activeTab: tab });
   }
 
+  onHover = () => {
+    this.style.cursor="pointer"
+  }
+
   render() {
     const {
       onClickTabItem,
