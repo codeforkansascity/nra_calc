@@ -5,6 +5,20 @@ import { Button, Form, Grid, Segment, GridColumn, Label, Message } from 'semanti
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
 
+//array of property type options for drop-down input
+const HomeOptions = [
+  {key: 's', text: 'Single-Family', value: 'single'},
+  {key: 'm', text: 'Multi-Family', value: 'multi'},
+  {key: 'oh', text: 'Other', value: 'other'}
+]
+
+//array of improvement type options for drop-down input
+const ImprovOptions = [
+  {key: 'c', text: 'Construction', value: 'construction'},
+  {key: 'r', text: 'Rehab', value: 'rehab'},
+  {key: 'oi', text: 'Other', value: 'other'}
+]
+
 class NRACalculator extends React.Component {
   constructor(props) {
     super(props)
@@ -50,6 +64,7 @@ class NRACalculator extends React.Component {
     }
   }
 
+
   render = () => {
     return (
       <Grid textAlign='left' className="NRACalculator">
@@ -66,8 +81,7 @@ class NRACalculator extends React.Component {
                 label="Current Value"
                 labelPosition="left"
                 placeholder='Current Value'
-                onChange={this.handleCurrent}
-              >
+                onChange={this.handleCurrent}>
                 <Label>$</Label>
                 <input />
               </Form.Input>
@@ -77,27 +91,39 @@ class NRACalculator extends React.Component {
                 label="Est. Value After Improvements"
                 labelPosition="left"
                 placeholder='Est. Value After Improvements'
-                onChange={this.handleImprovements}
-              >
+                onChange={this.handleImprovements}>
                 <Label>$</Label>
                 <input />
               </Form.Input>
+
+              {/** Dropdown input for home type **/}
+              <Form.Select 
+                fluid
+                label='Home Type'
+                options={HomeOptions}
+                placeholder='Home Type'/>
+
+              {/** Dropdown input for improvement type **/}
+              < Form.Select
+                fluid
+                label='Improvement Type'
+                options={ImprovOptions}
+                placeholder='Improvement Type'/>
 
               {/** Zone form input **/}
               <Form.Input
                 label="Zone"
                 placeholder='Zone'
                 value={this.state.zone ? this.state.zone : undefined}
-                onChange={this.handleZone}
-              />
+                onChange={this.handleZone}/>
 
+              {/** Zone picker. Opens map modal **/}
               <ZonePicker setZoneFromMap={this.setZoneFromMap} />
 
               {/** Submit button **/}
               <Button color='blue'
                 fluid size='large'
-                onClick={this.handleSubmit}
-              >
+                onClick={this.handleSubmit}>
                 Calculate Rebate
               </Button>
 
