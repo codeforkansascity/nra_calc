@@ -1,7 +1,7 @@
 import React from 'react';
 import './NRACalculator.scss';
 //import for Semantic-UI components
-import { Button, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
+import { Button, Icon, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
 
@@ -97,11 +97,11 @@ class NRACalculator extends React.Component {
               </Form.Input>
 
               {/** Dropdown input for home type **/}
-              <Form.Select 
-                fluid
-                label='Home Type'
-                options={HomeOptions}
-                placeholder='Home Type'/>
+                <Form.Select 
+                  fluid
+                  label='Home Type'
+                  options={HomeOptions}
+                  placeholder='Home Type'/>
 
               {/** Dropdown input for improvement type **/}
               < Form.Select
@@ -110,12 +110,12 @@ class NRACalculator extends React.Component {
                 options={ImprovOptions}
                 placeholder='Improvement Type'/>
 
-              {/** Zone form input **/}
-              <Form.Input
-                label="Zone"
-                placeholder='Zone'
-                value={this.state.zone ? this.state.zone : undefined}
-                onChange={this.handleZone}/>
+              {/** Zone selection success notification **/}
+              {this.state.zone &&
+              <Message
+              style={{color: 'green'}}
+              header='Success!'
+              content='Your zone is now set.' />}
 
               {/** Zone picker. Opens map modal **/}
               <ZonePicker setZoneFromMap={this.setZoneFromMap} />
@@ -124,6 +124,7 @@ class NRACalculator extends React.Component {
               <Button color='blue'
                 fluid size='large'
                 onClick={this.handleSubmit}>
+                <Icon name="calculator"/>
                 Calculate Rebate
               </Button>
 
