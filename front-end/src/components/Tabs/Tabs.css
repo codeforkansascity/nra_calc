@@ -6,13 +6,19 @@
 .tab-list-item {
   display: inline-block;
   list-style: none;
+  color: #0E6EB8;
   margin-bottom: -1px;
   padding: 0.5rem 0.75rem;
   cursor: pointer;
 }
 
+.tab-list-item:hover {
+  color: black
+}
+
 .tab-list-active {
   background-color: white;
+  color: black;
   border: solid #ccc;
   border-width: 1px 1px 0 1px;
 }
