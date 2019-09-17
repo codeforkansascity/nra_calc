@@ -19,14 +19,11 @@ function App() {
         </p>
         <NRACalculator></NRACalculator>
         </div>
-        <div label="About">
-          Information about the Neighborhood Revitalization Act.
-        </div>
         <div label="Resources">
           Helpful links to redirect users to additional material, application forms, etc.
         </div>
-        <div label="Contact Us">
-          Contact information, links, emails, for people involved in this project
+        <div label="About/Contact">
+          Information about the Neighborhood Revitalization Act.
         </div>
       </Tabs>
       <AppFooter>
