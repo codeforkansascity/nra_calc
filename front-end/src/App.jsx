@@ -4,7 +4,6 @@ import './App.scss';
 import AppFooter from './components/AppFooter';
 import NRACalculator from './components/NRACalculator';
 import Tabs from './components/Tabs/Tabs';
-require('./components/Tabs/Tabs.css');
 
 function App() {
   return (
