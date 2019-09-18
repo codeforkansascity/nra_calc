@@ -97,14 +97,14 @@ class NRACalculator extends React.Component {
               </Form.Input>
 
               {/** Dropdown input for home type **/}
-                <Form.Select 
-                  fluid
-                  label='Home Type'
-                  options={HomeOptions}
-                  placeholder='Home Type'/>
+              <Form.Select
+                fluid
+                label='Home Type'
+                options={HomeOptions}
+                placeholder='Home Type'/>
 
               {/** Dropdown input for improvement type **/}
-              < Form.Select
+              <Form.Select
                 fluid
                 label='Improvement Type'
                 options={ImprovOptions}
@@ -113,7 +113,7 @@ class NRACalculator extends React.Component {
               {/** Zone selection success notification **/}
               {this.state.zone &&
               <Message
-              style={{color: 'green'}}
+              color='green'
               header='Success!'
               content={`Your zone is now set to ${this.state.zone}.`} />}
 
