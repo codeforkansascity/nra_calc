@@ -118,7 +118,8 @@ class NRACalculator extends React.Component {
               content={`Your zone is now set to ${this.state.zone}.`} />}
 
               {/** Zone picker. Opens map modal **/}
-              <ZonePicker setZoneFromMap={this.setZoneFromMap} />
+              <ZonePicker 
+              setZoneFromMap={this.setZoneFromMap}/>
 
               {/** Submit button **/}
               <Button color='blue'
