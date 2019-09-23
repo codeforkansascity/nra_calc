@@ -14,8 +14,8 @@ const HomeOptions = [
 
 //array of improvement type options for drop-down input
 const ImprovOptions = [
-  {key: 'c', text: 'Construction', value: 'construction'},
-  {key: 'r', text: 'Rehab', value: 'rehab'},
+  {key: 'c', text: 'New Construction', value: 'construction'},
+  {key: 'r', text: 'Rehabilitation', value: 'rehabilitation'},
   {key: 'oi', text: 'Other', value: 'other'}
 ]
 
