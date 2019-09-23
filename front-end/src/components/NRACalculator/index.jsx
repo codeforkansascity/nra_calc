@@ -59,7 +59,6 @@ class NRACalculator extends React.Component {
       this.setState({
         estimates: getNRAEstimates(this.state.current, this.state.afterImprovements, this.state.zone)
       });
-      console.warn('ZONE/MILL RATE DATA IS MOCKED. THESE VALUES ARE NOT ACCURATE.')
       console.log(this.state.estimates);
     }
   }
@@ -69,10 +68,6 @@ class NRACalculator extends React.Component {
     return (
       <Grid textAlign='left' className="NRACalculator">
         <GridColumn>
-          { this.state.estimates &&
-            <Message color="yellow" style={{ textAlign: 'center' }}>
-              <p>Note: These estimates use fake mill rates, and are not yet accurate approximations.</p>
-            </Message>}
           <Form size='large'>
             <Segment stacked>
 
