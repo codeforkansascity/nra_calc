@@ -121,24 +121,29 @@ class NRACalculator extends React.Component {
                 Calculate Rebate
               </Button>
 
-              { this.state.estimates && <Segment basic textAlign="center">
-                <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
-                <p><b>Pay Per Year:</b> ${
-                  formatNumber(this.state.estimates.estLow.payPerYear)
-                  } - ${
-                    formatNumber(this.state.estimates.estHigh.payPerYear)
-                  }, Avg: ${formatNumber(this.state.estimates.estAverage.payPerYear)}</p>
-                <p><b>Savings Per Year:</b> ${
-                  formatNumber(this.state.estimates.estLow.savePerYear)
-                  } - ${
-                    formatNumber(this.state.estimates.estHigh.savePerYear)
-                  }, Avg: ${formatNumber(this.state.estimates.estAverage.savePerYear)}</p>
-                <p><b>{this.state.estimates.estAverage.incentiveYears} Year Savings:</b> ${
-                    formatNumber(this.state.estimates.estLow.savings)
-                  } - ${
-                    formatNumber(this.state.estimates.estHigh.savings)
-                  }, Avg: ${formatNumber(this.state.estimates.estAverage.savings)}</p>
-              </Segment>}
+              { /* Calculation results */ }
+              { this.state.estimates &&
+                <Segment basic textAlign="center">
+                  <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
+
+                  <p><b>Pay Per Year:</b> ${
+                    formatNumber(this.state.estimates.estLow.payPerYear)
+                    } - ${
+                      formatNumber(this.state.estimates.estHigh.payPerYear)
+                    }, Avg: ${formatNumber(this.state.estimates.estAverage.payPerYear)}</p>
+
+                  <p><b>Savings Per Year:</b> ${
+                    formatNumber(this.state.estimates.estLow.savePerYear)
+                    } - ${
+                      formatNumber(this.state.estimates.estHigh.savePerYear)
+                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savePerYear)}</p>
+
+                  <p><b>{this.state.estimates.estAverage.incentiveYears} Year Savings:</b> ${
+                      formatNumber(this.state.estimates.estLow.savings)
+                    } - ${
+                      formatNumber(this.state.estimates.estHigh.savings)
+                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savings)}</p>
+                </Segment>}
 
             </Segment>
           </Form>
