@@ -21,8 +21,8 @@ function App() {
         <div label="Resources">
           Helpful links to redirect users to additional material, application forms, etc.
         </div>
-        <div label="About/Contact">
-          Information about the Neighborhood Revitalization Act.
+        <div label="Contact">
+          Contact information
         </div>
       </Tabs>
       <AppFooter>
