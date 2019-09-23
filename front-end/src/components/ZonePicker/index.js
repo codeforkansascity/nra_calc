@@ -37,7 +37,7 @@ class ZonePicker extends React.Component {
                         onClick={this.handleOpen}
                         color={this.props.zone ? this.props.successColor : undefined}
                     >
-                        {this.props.zone ? <><Icon name="checkmark"/> {this.props.zone}</> : this.props.message}
+                        {this.props.zone ? <><Icon name="checkmark"/> Zone is set: {this.props.zone}</> : this.props.message}
                     </Button>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
@@ -46,15 +46,16 @@ class ZonePicker extends React.Component {
                         <Map 
                         setZoneFromMap={this.props.setZoneFromMap}/>
                     </Modal.Content>
-                    <Modal.Actions>
-                        {this.props.zone && <Button 
-                        primary
-                        fluid
-                        size='large'
-                        onClick={this.handleClose}>
+                    {this.props.zone && <Modal.Actions>
+                        <Button
+                            primary
+                            fluid
+                            size='large'
+                            onClick={this.handleClose}
+                        >
                             <Icon name="checkmark"/>Done
-                        </Button>}
-                    </Modal.Actions>
+                        </Button>
+                    </Modal.Actions>}
                 </Modal>
             </div>
         )
