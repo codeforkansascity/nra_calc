@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import Map from '../Map'
 
-const modalStyle = {
+const zonePickerStyle = {
     textAlign: 'center',
     marginBottom: '1em'
 }
@@ -29,7 +29,7 @@ class ZonePicker extends React.Component {
     }
     render() {
         return(
-            <div style={modalStyle}>
+            <div style={zonePickerStyle}>
                 <Modal 
                 trigger={
                     <Button 
