@@ -110,16 +110,13 @@ class NRACalculator extends React.Component {
                 options={ImprovOptions}
                 placeholder='Improvement Type'/>
 
-              {/** Zone selection success notification **/}
-              {this.state.zone &&
-              <Message
-              color='green'
-              header='Success!'
-              content={`Your zone is now set to ${this.state.zone}.`} />}
-
               {/** Zone picker. Opens map modal **/}
               <ZonePicker 
-              setZoneFromMap={this.setZoneFromMap}/>
+                setZoneFromMap={this.setZoneFromMap}
+                message={<>{<Icon name="map"/>} Select Your Zone</>}
+                successColor='green'
+                zone={this.state.zone}
+              />
 
               {/** Submit button **/}
               <Button color='blue'
