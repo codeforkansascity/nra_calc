@@ -73,9 +73,9 @@ class NRACalculator extends React.Component {
 
               {/** Current valuation form input **/}
               <Form.Input
-                label="Current Value"
+                label="Current Property Value"
                 labelPosition="left"
-                placeholder='Current Value'
+                placeholder='Current Property Value'
                 onChange={this.handleCurrent}>
                 <Label>$</Label>
                 <input />
@@ -91,19 +91,19 @@ class NRACalculator extends React.Component {
                 <input />
               </Form.Input>
 
-              {/** Dropdown input for home type **/}
-              <Form.Select
-                fluid
-                label='Home Type'
-                options={HomeOptions}
-                placeholder='Home Type'/>
-
               {/** Dropdown input for improvement type **/}
               <Form.Select
                 fluid
-                label='Improvement Type'
+                label='Property Improvement Type'
                 options={ImprovOptions}
-                placeholder='Improvement Type'/>
+                placeholder='Property Improvement Type'/>
+
+              {/** Dropdown input for home type **/}
+              <Form.Select
+                fluid
+                label='Building Type'
+                options={HomeOptions}
+                placeholder='Building Type'/>
 
               {/** Zone picker. Opens map modal **/}
               <ZonePicker 

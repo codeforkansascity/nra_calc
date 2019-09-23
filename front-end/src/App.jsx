@@ -8,7 +8,7 @@ import Tabs from './components/Tabs/Tabs';
 function App() {
   return (
     <div className="App">
-      <AppHeader>Neighborhood Revitalization Act Calculator</AppHeader>
+      <AppHeader>Neighborhood Revitalization Act</AppHeader>
       <Tabs>
         <div label="Calculator">
         <p>
