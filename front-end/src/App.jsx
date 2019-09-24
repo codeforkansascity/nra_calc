@@ -4,6 +4,7 @@ import './App.scss';
 import AppFooter from './components/AppFooter';
 import NRACalculator from './components/NRACalculator';
 import Tabs from './components/Tabs/Tabs';
+import Resources from './components/Resources/Resources';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </div>
         <div label="Resources">
           Helpful links to redirect users to additional material, application forms, etc.
+          <Resources></Resources>
         </div>
         <div label="Contact">
           Contact information
