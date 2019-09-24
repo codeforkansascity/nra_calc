@@ -25,7 +25,7 @@ export class Resources extends Component {
 
 const linkStyle = {
     fontWeight: 'bold',
-    marginBottom: '0.7em',
+    marginBottom: '1em',
     textAlign: 'center',
     display: 'block',
 };
