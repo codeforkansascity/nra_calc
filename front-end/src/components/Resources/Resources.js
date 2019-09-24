@@ -10,13 +10,20 @@ export class Resources extends Component {
                     rel="noopener noreferrer"
                     style={linkStyle}
                 >NRA Program Brochure</a>
+                <a
+                    href="https://www.wycokck.org/WycoKCK/media/Economic-Development/Documents/2018-2020-NRA-Application.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                >Application</a>
             </div>
         )
     }
 }
 
 const linkStyle = {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    display: 'block'
 };
 
 export default Resources
