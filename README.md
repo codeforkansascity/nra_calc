@@ -32,6 +32,7 @@ Currently, the team consists of:
 - Tim O'Connor: @timjoco
 - Blake Bradford: @blakebford3
 - Filipe Gomes: @filipe-gomes
+- Dylan Cruse: @dylancruse
 
 # Tech
 
