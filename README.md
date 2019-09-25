@@ -29,7 +29,6 @@ When somebody does decide to take advantage of the NRA, it's hard to understand 
 Currently, the team consists of:
 
 - Matt Cook: @mattcookxyz
-- Tim O'Connor: @timjoco
 - Blake Bradford: @blakebford3
 - Filipe Gomes: @filipe-gomes
 - Dylan Cruse: @dylancruse
