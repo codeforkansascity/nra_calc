@@ -63,7 +63,6 @@ class NRACalculator extends React.Component {
     }
   }
 
-
   render = () => {
     return (
       <Grid textAlign='left' className="NRACalculator">
