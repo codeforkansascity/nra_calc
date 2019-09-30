@@ -130,19 +130,19 @@ class NRACalculator extends React.Component {
                     formatNumber(this.state.estimates.estLow.payPerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.payPerYear)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.payPerYear)}</p>
+                    }</p>
 
                   <p><b>Savings Per Year:</b> ${
                     formatNumber(this.state.estimates.estLow.savePerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savePerYear)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savePerYear)}</p>
+                    }</p>
 
                   <p><b>{this.state.estimates.estAverage.incentiveYears} Year Savings:</b> ${
                       formatNumber(this.state.estimates.estLow.savings)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savings)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savings)}</p>
+                    }</p>
                 </Segment>}
 
             </Segment>
