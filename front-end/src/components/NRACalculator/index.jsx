@@ -126,23 +126,23 @@ class NRACalculator extends React.Component {
                 <Segment basic textAlign="center">
                   <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
 
-                  <p><b>Pay Per Year:</b> ${
+                  <p><b>You pay</b> ${
                     formatNumber(this.state.estimates.estLow.payPerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.payPerYear)
-                    }</p>
+                    } in taxes each year</p>
 
-                  <p><b>Savings Per Year:</b> ${
+                  <p><b>You save</b> ${
                     formatNumber(this.state.estimates.estLow.savePerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savePerYear)
-                    }</p>
+                    } in taxes per year</p>
 
-                  <p><b>{this.state.estimates.estAverage.incentiveYears} Year Savings:</b> ${
+                  <p><b>Over {this.state.estimates.estAverage.incentiveYears} years, you save</b> ${
                       formatNumber(this.state.estimates.estLow.savings)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savings)
-                    }</p>
+                    } in taxes.</p>
                 </Segment>}
 
             </Segment>
