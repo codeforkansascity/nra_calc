@@ -113,7 +113,13 @@ class NRACalculator extends React.Component {
               />
 
               {/** Submit button **/}
-              <Button color='blue'
+              <Button
+                disabled={
+                  !this.state.current
+                  || !this.state.afterImprovements
+                  || !this.state.zone
+                }
+                color='blue'
                 fluid size='large'
                 onClick={this.handleSubmit}>
                 <Icon name="calculator"/>
