@@ -32,6 +32,7 @@ Currently, the team consists of:
 - Blake Bradford: @blakebford3
 - Filipe Gomes: @filipe-gomes
 - Dylan Cruse: @dylancruse
+- Jeff Krakenberg: @sparrowkeeper
 
 # Tech
 
