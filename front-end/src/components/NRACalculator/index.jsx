@@ -37,7 +37,7 @@ class NRACalculator extends React.Component {
     })
   }
 
-  handleImprovements = e => {
+  handleInvestment = e => {
     this.setState({
       afterImprovements: cleanNumber(e.target.value),
     })
@@ -53,7 +53,6 @@ class NRACalculator extends React.Component {
       this.setState({ zone: e });
   }
 
-  // Will pass input values from state to backend as object
   handleSubmit() {
     if (this.state.current && this.state.afterImprovements && this.state.zone) {
       this.setState({
@@ -70,50 +69,69 @@ class NRACalculator extends React.Component {
           <Form size='large'>
             <Segment stacked>
 
-              {/** Current valuation form input **/}
-              <Form.Input
-                label="Current Property Value"
-                labelPosition="left"
-                placeholder='Current Property Value'
-                onChange={this.handleCurrent}>
-                <Label>$</Label>
-                <input />
-              </Form.Input>
+              {/* Text inputs grouped together */}
+              <Form.Group
+                widths="equal">
+                    {/** Current valuation form input **/}
+                  <Form.Input
+                    fluid
+                    label="Current Property Value"
+                    labelPosition="left"
+                    placeholder='Current Property Value'
+                    onChange={this.handleCurrent}>
+                    <Label>$</Label>
+                    <input />
+                  </Form.Input>
+                  {/** Est. Value After Investment form input **/}
+                  <Form.Input
+                    fluid
+                    label="Est. Value After Investment"
+                    labelPosition="left"
+                    placeholder='Est. Value After Investment'
+                    onChange={this.handleInvestment}>
+                    <Label>$</Label>
+                    <input />
+                  </Form.Input>
+              </Form.Group>
 
-              {/** Est. value after improvements form input **/}
-              <Form.Input
-                label="Est. Value After Improvements"
-                labelPosition="left"
-                placeholder='Est. Value After Improvements'
-                onChange={this.handleImprovements}>
-                <Label>$</Label>
-                <input />
-              </Form.Input>
+              {/* Dropdown inputs grouped together */}
+              <Form.Group
+                widths='equal'>
+                  {/** Dropdown input for improvement type **/}
+                  <Form.Select
+                    fluid
+                    label='Investment Type'
+                    options={ImprovOptions}
+                    placeholder='Investment Type'/>
+                  {/** Dropdown input for home type **/}
+                  <Form.Select
+                    fluid
+                    label='Building Type'
+                    options={HomeOptions}
+                    placeholder='Building Type'/>
+              </Form.Group>
 
-              {/** Dropdown input for improvement type **/}
-              <Form.Select
-                fluid
-                label='Property Improvement Type'
-                options={ImprovOptions}
-                placeholder='Property Improvement Type'/>
 
-              {/** Dropdown input for home type **/}
-              <Form.Select
-                fluid
-                label='Building Type'
-                options={HomeOptions}
-                placeholder='Building Type'/>
+              {/* Checkbox to mark historical properties. No functionality yet. */}
+              <Form.Checkbox 
+                label='This is a Historical Property'
+              />
 
               {/** Zone picker. Opens map modal **/}
               <ZonePicker 
                 setZoneFromMap={this.setZoneFromMap}
                 message={<>{<Icon name="map"/>} Select Your Zone</>}
                 successColor='green'
-                zone={this.state.zone}
-              />
+                zone={this.state.zone}/>
 
               {/** Submit button **/}
-              <Button color='blue'
+              <Button
+                disabled={
+                  !this.state.current
+                  || !this.state.afterImprovements
+                  || !this.state.zone
+                }
+                color='blue'
                 fluid size='large'
                 onClick={this.handleSubmit}>
                 <Icon name="calculator"/>
