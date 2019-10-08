@@ -4,7 +4,6 @@ import './App.scss';
 import AppFooter from './components/AppFooter';
 import NRACalculator from './components/NRACalculator';
 import Tabs from './components/Tabs/Tabs';
-import Resources from './components/Resources';
 
 function App() {
   return (
@@ -20,9 +19,6 @@ function App() {
         <NRACalculator></NRACalculator>
         </div>
         <div label="Resources">
-          <Resources />
-        </div>
-        <div label="Contact">
           <div><p><b>Contact:</b> Stephanie M. Moore</p></div>
           <div><p><b>Email:</b> smmoore@wycokck.org</p></div>
           <div><p><b>Phone:</b> (913) 573-5730</p></div>
