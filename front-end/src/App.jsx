@@ -22,9 +22,7 @@ function App() {
         <div label="Resources">
           <Resources />
         </div>
-        <div label="Contact">
-          Contact information
-        </div>
+
       </Tabs>
       <AppFooter>
         Created in partnership with <a href="https://codeforkc.org">Code for KC</a><br />
