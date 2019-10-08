@@ -41,7 +41,18 @@ class ZonePicker extends React.Component {
                     </Button>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}>
-                    <Modal.Header>{this.props.message}</Modal.Header>
+                    <Modal.Header>
+                        {this.props.message}
+
+                        {/*Report missing zone button. No functionality yet. Will implement notification*/}
+                        <Button
+                            size='medium'
+                            color='blue'
+                            floated='right'>
+                            <Icon name='info circle'/>Where's My Zone?        
+                        </Button>
+                        
+                    </Modal.Header>
                     <Modal.Content image>
                         <Map 
                         setZoneFromMap={this.props.setZoneFromMap}/>
@@ -51,8 +62,7 @@ class ZonePicker extends React.Component {
                             primary
                             fluid
                             size='large'
-                            onClick={this.handleClose}
-                        >
+                            onClick={this.handleClose}>
                             <Icon name="checkmark"/>Done
                         </Button>
                     </Modal.Actions>}
