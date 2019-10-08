@@ -44,14 +44,7 @@ class ZonePicker extends React.Component {
                     <Modal.Header>
                         {this.props.message}
 
-                        {/*Report missing zone button. No functionality yet. Will implement notification*/}
-                        <Button
-                            size='medium'
-                            color='blue'
-                            floated='right'>
-                            <Icon name='info circle'/>Where's My Zone?        
-                        </Button>
-                        
+                        <a href="#" style={{ float: 'right' }}>Where's my zone?</a>
                     </Modal.Header>
                     <Modal.Content image>
                         <Map 
