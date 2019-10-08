@@ -53,7 +53,6 @@ class NRACalculator extends React.Component {
       this.setState({ zone: e });
   }
 
-  // Will pass input values from state to backend as object
   handleSubmit() {
     if (this.state.current && this.state.afterImprovements && this.state.zone) {
       this.setState({
@@ -123,8 +122,7 @@ class NRACalculator extends React.Component {
                 setZoneFromMap={this.setZoneFromMap}
                 message={<>{<Icon name="map"/>} Select Your Zone</>}
                 successColor='green'
-                zone={this.state.zone}
-              />
+                zone={this.state.zone}/>
 
               {/** Submit button **/}
               <Button
