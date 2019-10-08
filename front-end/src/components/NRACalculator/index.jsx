@@ -24,39 +24,59 @@ class NRACalculator extends React.Component {
     super(props)
     this.state = {
       current: "",
-      afterImprovements: "",
+      valueAfterInvestment: "",
       zone: "",
-      estimates: ""
+      estimates: "",
+      isHistorical: false,
+      investmentType: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleCurrent = e => {
+  handleCurrent = (e, data) => {
     this.setState({
-      current: cleanNumber(e.target.value),
+      current: cleanNumber(data.value),
     })
   }
 
-  handleInvestment = e => {
+  handleValueAfterInvestment = (e, data) => {
     this.setState({
-      afterImprovements: cleanNumber(e.target.value),
+      valueAfterInvestment: cleanNumber(data.value),
     })
   }
 
-  handleZone = e => {
+  handleHistorical = (e, data) => {
     this.setState({
-      zone: cleanNumber(e.target.value),
+      isHistorical: data.checked,
     })
   }
 
-  setZoneFromMap = e => {
-      this.setState({ zone: e });
+  handleInvestmentType = (e, data) => {
+    this.setState({
+      investmentType: data.value,
+    })
+  }
+
+  handlePropertyType = (e, data) => {
+    this.setState({
+      propertyType: data.value,
+    })
+  }
+
+  handleZone = (e, data) => {
+    this.setState({
+      zone: cleanNumber(data.value),
+    })
+  }
+
+  setZoneFromMap = zone => {
+      this.setState({ zone });
   }
 
   handleSubmit() {
-    if (this.state.current && this.state.afterImprovements && this.state.zone) {
+    if (this.state.current && this.state.valueAfterInvestment && this.state.zone) {
       this.setState({
-        estimates: getNRAEstimates(this.state.current, this.state.afterImprovements, this.state.zone)
+        estimates: getNRAEstimates(this.state.current, this.state.valueAfterInvestment, this.state.zone)
       });
       console.log(this.state.estimates);
     }
@@ -88,7 +108,7 @@ class NRACalculator extends React.Component {
                     label="Est. Value After Investment"
                     labelPosition="left"
                     placeholder='Est. Value After Investment'
-                    onChange={this.handleInvestment}>
+                    onChange={this.handleValueAfterInvestment}>
                     <Label>$</Label>
                     <input />
                   </Form.Input>
@@ -102,20 +122,28 @@ class NRACalculator extends React.Component {
                     fluid
                     label='Investment Type'
                     options={ImprovOptions}
-                    placeholder='Investment Type'/>
+                    placeholder='Investment Type'
+                    onChange={this.handleInvestmentType}  
+                    />
                   {/** Dropdown input for home type **/}
                   <Form.Select
                     fluid
                     label='Building Type'
                     options={HomeOptions}
-                    placeholder='Building Type'/>
+                    placeholder='Building Type'
+                    onChange={this.handlePropertyType}  
+                    />
               </Form.Group>
 
 
               {/* Checkbox to mark historical properties. No functionality yet. */}
-              <Form.Checkbox 
-                label='This is a Historical Property'
-              />
+              <Form.Group grouped>
+                <label>Other</label>
+                <Form.Checkbox 
+                  label='This is a Historical Property'
+                  onChange={this.handleHistorical}
+                />
+              </Form.Group>
 
               {/** Zone picker. Opens map modal **/}
               <ZonePicker 
@@ -128,7 +156,7 @@ class NRACalculator extends React.Component {
               <Button
                 disabled={
                   !this.state.current
-                  || !this.state.afterImprovements
+                  || !this.state.valueAfterInvestment
                   || !this.state.zone
                 }
                 color='blue'
