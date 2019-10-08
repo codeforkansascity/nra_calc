@@ -96,7 +96,7 @@ class NRACalculator extends React.Component {
 
               {/* Dropdown inputs grouped together */}
               <Form.Group
-                grouped>
+                widths='equal'>
                   {/** Dropdown input for improvement type **/}
                   <Form.Select
                     fluid
