@@ -28,7 +28,8 @@ class NRACalculator extends React.Component {
       zone: "",
       estimates: "",
       isHistorical: false,
-      investmentType: ""
+      investmentType: "",
+      propertyType: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -158,6 +159,8 @@ class NRACalculator extends React.Component {
                   !this.state.current
                   || !this.state.valueAfterInvestment
                   || !this.state.zone
+                  || !this.state.investmentType
+                  || !this.state.propertyType
                 }
                 color='blue'
                 fluid size='large'
