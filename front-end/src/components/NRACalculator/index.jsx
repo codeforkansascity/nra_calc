@@ -1,7 +1,7 @@
 import React from 'react';
 import './NRACalculator.scss';
 //import for Semantic-UI components
-import { Button, Icon, Form, Checkbox, Grid, Segment, GridColumn, Label } from 'semantic-ui-react'
+import { Button, Icon, Form, Grid, Segment, GridColumn, Label } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
 
