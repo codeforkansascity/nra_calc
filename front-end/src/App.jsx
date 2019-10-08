@@ -22,11 +22,6 @@ function App() {
         <div label="Resources">
           <Resources />
         </div>
-        <div label="Contact">
-          <div><p><b>Contact:</b> Stephanie M. Moore</p></div>
-          <div><p><b>Email:</b> smmoore@wycokck.org</p></div>
-          <div><p><b>Phone:</b> (913) 573-5730</p></div>
-        </div>
       </Tabs>
       <AppFooter>
         Created in partnership with <a href="https://codeforkc.org">Code for KC</a><br />

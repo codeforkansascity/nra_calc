@@ -18,11 +18,11 @@ export class Resources extends Component {
                     style={linkStyle}
                 ><h2>Application</h2></a>
                 <p>Begin the application process by filling out this form. The application includes details about how to submit for processing.</p>
-                <h2 label="Contact">
-          Contact information</h2>
-        <div><p> Stephanie M. Moore</p></div>
-        <div><p>smmoore@wycokck.org</p></div>
-        <div><p> (913) 573-5730</p></div>
+                
+                <h2 label="Contact">Contact information</h2>
+                <div><p> Stephanie M. Moore</p></div>
+                <div><p>smmoore@wycokck.org</p></div>
+                <div><p> (913) 573-5730</p></div>
             </div>
         )
     }
