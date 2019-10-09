@@ -10,6 +10,9 @@
       "url": "https://mattcook.xyz"
     }
   ],
+  "pre-commit": [
+    "lint-staged"
+  ],
   "dependencies": {
     "leaflet": "^1.5.1",
     "node-sass": "^4.12.0",
@@ -42,9 +45,6 @@
     "lint": "eslint src/**/*.{js,jsx}",
     "lint-staged": "lint-staged"
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
       "prettier --write",
