@@ -5,6 +5,7 @@
 }
 
 .tab-list-item {
+  transition: 75ms;
   display: inline-block;
   list-style: none;
   color: #0E6EB8;
@@ -13,6 +14,7 @@
   cursor: pointer;
   width: 50%;
   font-size: 1.5em;
+  text-align: center
 }
 
 .tab-list-item:hover {
