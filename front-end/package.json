@@ -39,7 +39,8 @@
     "snapshot": "react-snapshot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{js,jsx}"
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint-staged": "lint-staged"
   },
   "pre-commit": [
     "lint-staged"
