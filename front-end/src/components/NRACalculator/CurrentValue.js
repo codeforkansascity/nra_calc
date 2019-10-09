@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react";
 
 export default class CurrentValue extends React {
-    render = () => {
-        return (
-            <div>
-                <input>
-                </input>
-            </div>
-        );
-    }
+  render = () => {
+    return (
+      <div>
+        <input></input>
+      </div>
+    );
+  };
 }
