@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppFooter from './';
+import AppFooter from '.';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
