@@ -10,9 +10,11 @@
       "url": "https://mattcook.xyz"
     }
   ],
-  "pre-commit": [
-    "lint-staged"
-  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "leaflet": "^1.5.1",
     "node-sass": "^4.12.0",
@@ -29,8 +31,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^3.0.8",
     "lint-staged": "^9.4.2",
-    "pre-commit": "^1.2.2",
     "prettier": "^1.18.2",
     "react-snapshot": "^1.3.0"
   },
@@ -42,8 +44,7 @@
     "snapshot": "react-snapshot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.{js,jsx}",
-    "lint-staged": "lint-staged"
+    "lint": "eslint src/**/*.{js,jsx}"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
