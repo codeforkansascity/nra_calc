@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class Resources extends Component {
+export default class Resources extends Component {
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
