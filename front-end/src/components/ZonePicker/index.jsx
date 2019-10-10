@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, Icon } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Map from '../Map';
 
 const zonePickerStyle = {
@@ -30,6 +31,14 @@ class ZonePicker extends React.Component {
   };
 
   render() {
+    const {
+      zone, successColor, message, setZoneFromMap,
+    } = this.props;
+
+    const {
+      modalOpen,
+    } = this.state;
+
     return (
       <div style={zonePickerStyle}>
         <Modal
@@ -38,34 +47,34 @@ class ZonePicker extends React.Component {
               fluid
               size="large"
               onClick={this.handleOpen}
-              color={this.props.zone ? this.props.successColor : undefined}
+              color={zone ? successColor : undefined}
             >
-              {this.props.zone ? (
+              {zone ? (
                 <>
                   <Icon name="checkmark" />
                   {' '}
                   Zone is set:
-                  {this.props.zone}
+                  {zone}
                 </>
               ) : (
-                this.props.message
+                message
               )}
             </Button>
           )}
-          open={this.state.modalOpen}
+          open={modalOpen}
           onClose={this.handleClose}
         >
           <Modal.Header>
-            {this.props.message}
+            {message}
 
-            <a href="#" style={{ float: 'right' }}>
-              Where's my zone?
+            <a href="https://codeforkc.org/nra_calc" style={{ float: 'right' }}>
+              Where&apos;s my zone?
             </a>
           </Modal.Header>
           <Modal.Content image>
-            <Map setZoneFromMap={this.props.setZoneFromMap} />
+            <Map setZoneFromMap={setZoneFromMap} />
           </Modal.Content>
-          {this.props.zone && (
+          {zone && (
             <Modal.Actions>
               <Button primary fluid size="large" onClick={this.handleClose}>
                 <Icon name="checkmark" />
@@ -78,5 +87,12 @@ class ZonePicker extends React.Component {
     );
   }
 }
+
+ZonePicker.propTypes = {
+  zone: PropTypes.string.isRequired,
+  successColor: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  setZoneFromMap: PropTypes.func.isRequired,
+};
 
 export default ZonePicker;
