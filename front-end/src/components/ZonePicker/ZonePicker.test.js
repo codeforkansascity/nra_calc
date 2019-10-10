@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ZonePicker from ".";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ZonePicker from '.';
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
+it('renders without crashing', () => {
+  const div = document.createElement('div');
   ReactDOM.render(<ZonePicker />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

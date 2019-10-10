@@ -1,37 +1,39 @@
-import React from "react";
-import { Button, Modal, Icon } from "semantic-ui-react";
-import Map from "../Map";
+import React from 'react';
+import { Button, Modal, Icon } from 'semantic-ui-react';
+import Map from '../Map';
 
 const zonePickerStyle = {
-  textAlign: "center",
-  marginBottom: "1em"
+  textAlign: 'center',
+  marginBottom: '1em',
 };
 
-//popup modal containing Leaflet.js map
+// popup modal containing Leaflet.js map
 
 class ZonePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
     };
   }
 
   handleOpen = () => {
     this.setState({
-      modalOpen: true
+      modalOpen: true,
     });
   };
+
   handleClose = () => {
     this.setState({
-      modalOpen: false
+      modalOpen: false,
     });
   };
+
   render() {
     return (
       <div style={zonePickerStyle}>
         <Modal
-          trigger={
+          trigger={(
             <Button
               fluid
               size="large"
@@ -40,20 +42,23 @@ class ZonePicker extends React.Component {
             >
               {this.props.zone ? (
                 <>
-                  <Icon name="checkmark" /> Zone is set: {this.props.zone}
+                  <Icon name="checkmark" />
+                  {' '}
+Zone is set:
+                  {this.props.zone}
                 </>
               ) : (
                 this.props.message
               )}
             </Button>
-          }
+          )}
           open={this.state.modalOpen}
           onClose={this.handleClose}
         >
           <Modal.Header>
             {this.props.message}
 
-            <a href="#" style={{ float: "right" }}>
+            <a href="#" style={{ float: 'right' }}>
               Where's my zone?
             </a>
           </Modal.Header>

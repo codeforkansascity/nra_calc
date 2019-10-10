@@ -29,7 +29,7 @@ class Tabs extends Component {
       },
       state: {
         activeTab,
-      }
+      },
     } = this;
 
     return (

@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export class Resources extends Component {
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: 'center' }}>
         <a
           href="https://www.wycokck.org/WycoKCK/media/Economic-Development/Documents/CR-NRA-Brochure.pdf"
           target="_blank"
@@ -46,10 +46,10 @@ export class Resources extends Component {
 }
 
 const linkStyle = {
-  fontWeight: "bold",
-  marginBottom: "1em",
-  textAlign: "center",
-  display: "block"
+  fontWeight: 'bold',
+  marginBottom: '1em',
+  textAlign: 'center',
+  display: 'block',
 };
 
 export default Resources;
