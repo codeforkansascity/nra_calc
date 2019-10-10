@@ -13,6 +13,15 @@ class Map extends React.Component {
     };
   }
 
+  // sets zone selection in form. also serves as wrapper function for toggling highlight.
+  getAreaFromClick = (e) => {
+    this.props.setZoneFromMap(e.layer.feature.properties.Name);
+    this.setState({
+      selection: e.layer.feature,
+    });
+    this.handleHighlight();
+  };
+
   handleHighlight() {
     if (this.state.highlight === true) {
       this.setState({
@@ -24,15 +33,6 @@ class Map extends React.Component {
       });
     }
   }
-
-  // sets zone selection in form. also serves as wrapper function for toggling highlight.
-  getAreaFromClick = (e) => {
-    this.props.setZoneFromMap(e.layer.feature.properties.Name);
-    this.setState({
-      selection: e.layer.feature,
-    });
-    this.handleHighlight();
-  };
 
   // load geoJSON containing zone polygons
   async componentDidMount() {
