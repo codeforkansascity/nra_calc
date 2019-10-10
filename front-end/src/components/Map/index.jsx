@@ -1,5 +1,6 @@
 import React from 'react';
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet';
+import PropTypes from 'prop-types';
 
 class Map extends React.Component {
   constructor(props) {
@@ -11,27 +12,6 @@ class Map extends React.Component {
       selection: [],
       highlight: false,
     };
-  }
-
-  // sets zone selection in form. also serves as wrapper function for toggling highlight.
-  getAreaFromClick = (e) => {
-    this.props.setZoneFromMap(e.layer.feature.properties.Name);
-    this.setState({
-      selection: e.layer.feature,
-    });
-    this.handleHighlight();
-  };
-
-  handleHighlight() {
-    if (this.state.highlight === true) {
-      this.setState({
-        highlight: false,
-      });
-    } else {
-      this.setState({
-        highlight: true,
-      });
-    }
   }
 
   // load geoJSON containing zone polygons
@@ -46,36 +26,68 @@ class Map extends React.Component {
     });
   }
 
-  render = () => (
-    <LeafletMap
-      style={{ width: '100%' }}
-      center={this.state.position}
-      zoom={this.state.zoom}
-        // disabled click zoom to prevent conflict with zone selection
-      doubleClickZoom={false}
-    >
-      <TileLayer
-        url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      />
+  // sets zone selection in form. also serves as wrapper function for toggling highlight.
+  getAreaFromClick = (e) => {
+    const { setZoneFromMap } = this.props;
+    setZoneFromMap(e.layer.feature.properties.Name);
+    this.setState({
+      selection: e.layer.feature,
+    });
+    this.handleHighlight();
+  };
 
-      <GeoJSON
-        key={this.state.polygons}
-        data={this.state.polygons}
-        onClick={this.getAreaFromClick}
-        style={{ color: 'green' }}
-      />
+  handleHighlight() {
+    const { highlight } = this.state;
+    if (highlight === true) {
+      this.setState({
+        highlight: false,
+      });
+    } else {
+      this.setState({
+        highlight: true,
+      });
+    }
+  }
 
-      {/* contains highlighted zone. currently alerts console about duplicate keys. will resolve error. */}
-      {this.state.highlight && (
-      <GeoJSON
-        key={this.state.selection}
-        data={this.state.selection}
-        style={{ color: 'yellow' }}
-      />
-      )}
-    </LeafletMap>
-  );
+  render = () => {
+    const {
+      position, zoom, polygons, highlight, selection,
+    } = this.state;
+    return (
+      <LeafletMap
+        style={{ width: '100%' }}
+        center={position}
+        zoom={zoom}
+          // disabled click zoom to prevent conflict with zone selection
+        doubleClickZoom={false}
+      >
+        <TileLayer
+          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        />
+
+        <GeoJSON
+          key={polygons}
+          data={polygons}
+          onClick={this.getAreaFromClick}
+          style={{ color: 'green' }}
+        />
+
+        {/* contains highlighted zone. currently alerts console about duplicate keys. will resolve error. */}
+        {highlight && (
+        <GeoJSON
+          key={selection}
+          data={selection}
+          style={{ color: 'yellow' }}
+        />
+        )}
+      </LeafletMap>
+    );
+  }
 }
+
+Map.propTypes = {
+  setZoneFromMap: PropTypes.func.isRequired,
+};
 
 export default Map;

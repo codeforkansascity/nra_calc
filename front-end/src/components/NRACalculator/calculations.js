@@ -3,47 +3,6 @@ const assessmentPercentage = 0.115;
 
 export const calculateTaxes = (amount, millRate) => (amount / 1000) * millRate - 44;
 
-export const getNRAEstimates = (
-  startingValue,
-  estValueAfterImprovements,
-  zone,
-) => {
-  const {
-    millRateHigh,
-    millRateLow,
-    millRateAvg,
-    incentiveYears,
-  } = zoneData.get(zone);
-
-  // Calculate based on high, low, and average mill rate within given zone
-  // Eventually we hope to create a more granular estimate based on address,
-  // but as a first pass, this removes a lot of complexity
-  const estHigh = calculateRebate(
-    startingValue,
-    estValueAfterImprovements,
-    millRateHigh,
-    incentiveYears,
-  );
-  const estLow = calculateRebate(
-    startingValue,
-    estValueAfterImprovements,
-    millRateLow,
-    incentiveYears,
-  );
-  const estAverage = calculateRebate(
-    startingValue,
-    estValueAfterImprovements,
-    millRateAvg,
-    incentiveYears,
-  );
-
-  return {
-    estHigh,
-    estLow,
-    estAverage,
-  };
-};
-
 // Calculate NRA tax incentive
 export const calculateRebate = (
   startingValue,
@@ -168,3 +127,44 @@ const zoneData = new Map([
     },
   ],
 ]);
+
+export const getNRAEstimates = (
+  startingValue,
+  estValueAfterImprovements,
+  zone,
+) => {
+  const {
+    millRateHigh,
+    millRateLow,
+    millRateAvg,
+    incentiveYears,
+  } = zoneData.get(zone);
+
+  // Calculate based on high, low, and average mill rate within given zone
+  // Eventually we hope to create a more granular estimate based on address,
+  // but as a first pass, this removes a lot of complexity
+  const estHigh = calculateRebate(
+    startingValue,
+    estValueAfterImprovements,
+    millRateHigh,
+    incentiveYears,
+  );
+  const estLow = calculateRebate(
+    startingValue,
+    estValueAfterImprovements,
+    millRateLow,
+    incentiveYears,
+  );
+  const estAverage = calculateRebate(
+    startingValue,
+    estValueAfterImprovements,
+    millRateAvg,
+    incentiveYears,
+  );
+
+  return {
+    estHigh,
+    estLow,
+    estAverage,
+  };
+};
