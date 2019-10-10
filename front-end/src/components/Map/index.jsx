@@ -44,7 +44,6 @@ class Map extends React.Component {
     this.setState({
       polygons: json,
     });
-    console.log(this.state.polygons);
   }
 
   render = () => (
