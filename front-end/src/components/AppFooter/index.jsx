@@ -1,12 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './AppFooter.scss';
 
-class AppFooter extends React.Component {
-  render = () => (
+const AppFooter = (props) => {
+  const { children } = props;
+  return (
     <footer className="AppFooter">
-      <p>{this.props.children}</p>
+      <p>{children}</p>
     </footer>
-  )
-}
+  );
+};
+
+AppFooter.propTypes = {
+  children: PropTypes.string.isRequired,
+};
 
 export default AppFooter;
