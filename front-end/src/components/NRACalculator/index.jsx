@@ -81,7 +81,6 @@ class NRACalculator extends React.Component {
       this.setState({
         estimates: getNRAEstimates(this.state.current, this.state.valueAfterInvestment, this.state.zone),
       });
-      console.log(this.state.estimates);
     }
   }
 

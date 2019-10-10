@@ -44,7 +44,7 @@ class ZonePicker extends React.Component {
                 <>
                   <Icon name="checkmark" />
                   {' '}
-Zone is set:
+                  Zone is set:
                   {this.props.zone}
                 </>
               ) : (
