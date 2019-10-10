@@ -44,7 +44,7 @@ class ZonePicker extends React.Component {
                     <Modal.Header>
                         {this.props.message}
 
-                        <a href="#" style={{ float: 'right' }}>Where's my zone?</a>
+                        <a href="#" style={{ float: 'right' }}>Where&apos;s my zone?</a>
                     </Modal.Header>
                     <Modal.Content image>
                         <Map 
