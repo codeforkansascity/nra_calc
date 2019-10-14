@@ -53,7 +53,7 @@ class ZonePicker extends React.Component {
           fluid
           size='large'
           color='blue'>
-            Where&amp;s my zone?
+            {"Where is my zone?"}
           </Button>}
           {this.props.zone && <Button
               primary
