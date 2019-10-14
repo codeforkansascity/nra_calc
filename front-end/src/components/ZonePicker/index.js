@@ -43,25 +43,26 @@ class ZonePicker extends React.Component {
         onClose={this.handleClose}>
           <Modal.Header>
             {this.props.message}
-
-            <a href="#" style={{
-              float: 'right',
-              fontSize: '1em'
-            }}>Where&apos;s my zone?</a>
           </Modal.Header>
           <Modal.Content image>
             <Map 
             setZoneFromMap={this.props.setZoneFromMap}/>
           </Modal.Content>
-          {this.props.zone && <Modal.Actions>
-            <Button
+          <Modal.Actions>
+          {!this.props.zone && <Button
+          fluid
+          size='large'
+          color='blue'>
+            Where&amp;s my zone?
+          </Button>}
+          {this.props.zone && <Button
               primary
               fluid
               size='large'
               onClick={this.handleClose}>
               <Icon name="checkmark"/>Done
-            </Button>
-          </Modal.Actions>}
+            </Button>}
+          </Modal.Actions>
         </Modal>
       </div>
     )
