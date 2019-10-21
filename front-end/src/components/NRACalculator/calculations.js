@@ -67,54 +67,54 @@ const zoneData = new Map([
         millRateLow: 166.699688,
         millRateHigh: 184.882947,
         millRateAvg: 168.0502949,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 10
     }],
     ['Area 2 East', {
         millRateLow: 151.970885,
         millRateHigh: 187.634256,
         millRateAvg: 168.6046749,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5
     }],
     ['Area 2 East - State Avenue Corridor', {
         millRateLow: 166.699688,
         millRateHigh: 172.831745,
         millRateAvg: 171.7744938,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5 // Don't know for sure yet
     }],
     ['Area 2 West', {
         millRateLow: 166.699688,
         millRateHigh: 176.91593,
         millRateAvg: 166.7490233,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5
     }],
     ['Area 3', {
         millRateLow: 172.760032,
         millRateHigh: 180.7673,
         millRateAvg: 172.8878387,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5
     }],
     ['Area 4', {
         millRateLow: 166.699688,
         millRateHigh: 176.931593,
         millRateAvg: 174.3241988,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5
     }],
     ['Bonner Springs Zone 3', {
         millRateLow: 166.87731,
         millRateHigh: 166.87731,
         millRateAvg: 166.87731,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5 // Don't know for sure yet
     }],
     ['Bonner Springs Zone 4', {
         millRateLow: 166.87731,
         millRateHigh: 180.76073,
         millRateAvg: 166.8845297,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5 // Don't know for sure yet
     }],
     ['Edwardsville', {
         millRateLow: 166.87731,
         millRateHigh: 180.76073,
         millRateAvg: 180.6365491,
-        incentiveYears: 10 // DON'T KNOW FOR SURE YET
+        incentiveYears: 5 // Don't know for sure yet
     }]
 ]);
