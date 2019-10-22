@@ -5,16 +5,55 @@ export const calculateTaxes = (amount, millRate) => {
     return ((amount / 1000) * millRate) - 44;
 }
 
-export const getNRAEstimates = (startingValue, estValueAfterImprovements, zone) => {
+/************************ START NEW STUFF ************************/
+
+export const calculateEligibility = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
+
+    let propertyEligible = true;
+    let investmentEligible = true;
+    const errors = [];
+
+    const zonePropertyTypes = zoneData.get(propertyType);
+    const assessedValue = startingValue * assessmentPercentage;
+
+    if (!zonePropertyTypes.hasOwnKey(propertyType)) {
+        propertyEligible = false;
+        errors.push(`This property type doesn't fall under the guidelines for zone ${zone}`);
+    } else if (!zonePropertyTypes[propertyType][investmentType]) {
+        propertyEligible = false;
+        errors.push(`This investment type doesn't fall under the guidelines for zone ${zone}`);
+    }
+
+    if (zonePropertyTypes[propertyType]) {
+        const rawMinInvestment = zonePropertyTypes[propertyType][minInvestment];
+        const minInvestment = rawMinInvestment <= 1 ? rawMinInvestment * assessedValue : rawMinInvestment;
+        const eligible = (valueAfterInvestment - startingValue) >= minInvestment;
+        if (!eligible) errors.push(`The minimum investment for this property type and zone is ${minInvestment}`);
+    } else {
+        investmentEligible = false;
+    }
+
+    return {
+        isEligible: propertyEligible && investmentEligible,
+        propertyEligible,
+        investmentEligible,
+        errors
+    }
+}
+
+/************************ END NEW STUFF ************************/
+
+
+export const getNRAEstimates = (startingValue, estValueAfterInvestment, zone) => {
 
     const { millRateHigh, millRateLow, millRateAvg, incentiveYears } = zoneData.get(zone);
 
     // Calculate based on high, low, and average mill rate within given zone
     // Eventually we hope to create a more granular estimate based on address,
     // but as a first pass, this removes a lot of complexity
-    const estHigh = calculateRebate(startingValue, estValueAfterImprovements, millRateHigh, incentiveYears);
-    const estLow = calculateRebate(startingValue, estValueAfterImprovements, millRateLow, incentiveYears);
-    const estAverage = calculateRebate(startingValue, estValueAfterImprovements, millRateAvg, incentiveYears);
+    const estHigh = calculateRebate(startingValue, estValueAfterInvestment, millRateHigh, incentiveYears);
+    const estLow = calculateRebate(startingValue, estValueAfterInvestment, millRateLow, incentiveYears);
+    const estAverage = calculateRebate(startingValue, estValueAfterInvestment, millRateAvg, incentiveYears);
 
     return {
         estHigh,
@@ -25,20 +64,20 @@ export const getNRAEstimates = (startingValue, estValueAfterImprovements, zone) 
 }
 
 // Calculate NRA tax incentive
-export const calculateRebate = (startingValue, estValueAfterImprovements, millRate, incentiveYears) => {
+export const calculateRebate = (startingValue, estValueAfterInvestment, millRate, incentiveYears) => {
 
     // Calculate current taxes
     const currentAssessedValue = startingValue * assessmentPercentage;
     const currentTaxes = calculateTaxes(currentAssessedValue, millRate);
 
     // Calculate new taxes
-    const fivePercentImprovements = (estValueAfterImprovements - startingValue) * 0.05;
-    const newTaxableAmount = startingValue + fivePercentImprovements;
+    const fivePercentInvestment = (estValueAfterInvestment - startingValue) * 0.05;
+    const newTaxableAmount = startingValue + fivePercentInvestment;
     const newTaxableAmountAssessed = newTaxableAmount * assessmentPercentage;
     const newTaxes = calculateTaxes(newTaxableAmountAssessed, millRate);
 
     // Calculate incremental tax values
-    const incrementalAppraisedValue = estValueAfterImprovements - fivePercentImprovements;
+    const incrementalAppraisedValue = estValueAfterInvestment - fivePercentInvestment;
     const incrementalAssessedValue = incrementalAppraisedValue * assessmentPercentage;
     const incrementalTaxSavings = (incrementalAssessedValue / 1000) * millRate;
 
