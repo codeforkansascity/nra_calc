@@ -42,7 +42,7 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         if (!investmentEligible) errors.push({
             id: errorID += 1,
             category: 'minimumInvestment',
-            message: `Investment of $${totalInvestment} doesn't meet the minimum of $${minInvestment} for this property type and zone.`
+            message: `Investment of $${totalInvestment} doesn't meet the minimum of $${minInvestment} for this property's type, value, and zone.`
         });
     } else {
         investmentEligible = false;
