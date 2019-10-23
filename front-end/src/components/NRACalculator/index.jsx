@@ -15,8 +15,6 @@ const HomeOptions = [
   {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily}
 ]
 
-console.log(HomeOptions)
-
 //array of improvement type options for drop-down input
 const ImprovOptions = [
   {key: 'c', text: 'New Construction', value: 'construction'},
