@@ -33,6 +33,7 @@
     "snapshot": "react-snapshot",
     "test:watch": "react-scripts test",
     "test": "CI=true react-scripts test",
+    "lint": "eslint src/**/*.{js,jsx}",
     "eject": "react-scripts eject"
   },
   "reactSnapshot": {

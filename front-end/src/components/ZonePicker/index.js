@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Modal, Icon } from 'semantic-ui-react'
 import Map from '../Map'
+import PropTypes from 'prop-types';
 
 const zonePickerStyle = {
   textAlign: 'center',
@@ -67,6 +68,13 @@ class ZonePicker extends React.Component {
       </div>
     )
   }
+}
+
+ZonePicker.propTypes = {
+  zone: PropTypes.string,
+  setZoneFromMap: PropTypes.func,
+  message: PropTypes.string,
+  successColor: PropTypes.string
 }
 
 export default ZonePicker;

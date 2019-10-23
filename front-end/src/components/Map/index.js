@@ -1,6 +1,6 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet';
-
+import PropTypes from 'prop-types';
 
 class Map extends React.Component {
   constructor(props){
@@ -73,6 +73,10 @@ class Map extends React.Component {
       </LeafletMap>
     );
   }
+}
+
+Map.propTypes = {
+  setZoneFromMap: PropTypes.func
 }
 
 export default Map
