@@ -5,8 +5,6 @@ export const calculateTaxes = (amount, millRate) => {
     return ((amount / 1000) * millRate) - 44;
 }
 
-/************************ START NEW STUFF ************************/
-
 export const getEligibility = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
 
     let propertyEligible = true;
@@ -34,14 +32,14 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         });
     }
 
-    if (zonePropertyTypes && zonePropertyTypes[propertyType]) {
+    if (zonePropertyTypes && zonePropertyTypes[propertyType] && propertyEligible) {
         const rawMinInvestment = zonePropertyTypes[propertyType]['minInvestment'];
         const minInvestment = rawMinInvestment <= 1 ? rawMinInvestment * assessedValue : rawMinInvestment;
         const totalInvestment = valueAfterInvestment - startingValue;
         investmentEligible = totalInvestment >= minInvestment;
         if (!investmentEligible) errors.push({
             id: errorID += 1,
-            category: 'propertyType',
+            category: 'minimumInvestment',
             message: `Investment of $${totalInvestment} doesn't meet the minimum of $${minInvestment} for this property type and zone.`
         });
     } else {
@@ -55,9 +53,6 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         errors
     }
 }
-
-/************************ END NEW STUFF ************************/
-
 
 export const getNRAEstimates = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
 
@@ -132,6 +127,11 @@ const zoneData = new Map([
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
+            },
+            historic: {
+                rehab: true,
+                minInvestment: 0.05,
+                rebate: 1
             }
         }
     }],
