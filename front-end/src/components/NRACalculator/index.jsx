@@ -19,8 +19,7 @@ const HomeOptions = [
 //array of improvement type options for drop-down input
 const ImprovOptions = [
   {key: 'c', text: 'New Construction', value: 'new'},
-  {key: 'r', text: 'Rehabilitation', value: 'rehab'},
-  {key: 'o', text: 'Other', value: 'other'}
+  {key: 'r', text: 'Rehabilitation', value: 'rehab'}
 ]
 
 class NRACalculator extends React.Component {
