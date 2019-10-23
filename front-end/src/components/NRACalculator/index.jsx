@@ -10,9 +10,10 @@ import PropertyTypes from './PropertyTypes';
 const HomeOptions = [
   {key: 's', text: 'Single-Family Detached', value: PropertyTypes.singleFamilyDetached},
   {key: 'd', text: 'Duplex Single-Family Attached', value: PropertyTypes.duplexSingleFamilyAttached},
-  {key: 't', text: 'Townhomes Single-Family Attached', value: PropertyTypes.townhomeSingleFamilyAttached},
+  {key: 't', text: 'Townhome Single-Family Attached', value: PropertyTypes.townhomeSingleFamilyAttached},
   {key: 'sd', text: 'Single Duplex', value: PropertyTypes.singleDuplex},
-  {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily}
+  {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily},
+  {key: 'h', text: 'Historic', value: PropertyTypes.historic}
 ]
 
 //array of improvement type options for drop-down input
@@ -30,7 +31,6 @@ class NRACalculator extends React.Component {
       valueAfterInvestment: "",
       zone: "",
       estimates: {},
-      isHistoric: false, // TODO: Move this into the 'property type' dropdown
       investmentType: "",
       propertyType: "",
       eligibility: {},
@@ -48,12 +48,6 @@ class NRACalculator extends React.Component {
   handleValueAfterInvestment = (e, data) => {
     this.setState({
       valueAfterInvestment: cleanNumber(data.value),
-    })
-  }
-
-  handleHistoric = (e, data) => {
-    this.setState({
-      isHistoric: data.checked,
     })
   }
 
@@ -85,7 +79,7 @@ class NRACalculator extends React.Component {
         this.state.current,
         this.state.valueAfterInvestment,
         this.state.investmentType,
-        this.state.isHistoric ? 'historic' : this.state.propertyType,
+        this.state.propertyType,
         this.state.zone
         );
       this.setState({
@@ -153,16 +147,6 @@ class NRACalculator extends React.Component {
                     placeholder='Building Type'
                     onChange={this.handlePropertyType}  
                     />
-              </Form.Group>
-
-
-              {/* Checkbox to mark historical properties. No functionality yet. */}
-              <Form.Group grouped>
-                <label>Other</label>
-                <Form.Checkbox 
-                  label='This is a Historic Property'
-                  onChange={this.handleHistoric}
-                />
               </Form.Group>
 
               {/** Zone picker. Opens map modal **/}

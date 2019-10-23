@@ -1,3 +1,5 @@
+import PropertyTypes from './PropertyTypes';
+
 // State-wide constant value
 const assessmentPercentage = 0.115;
 
@@ -122,13 +124,13 @@ const zoneData = new Map([
         millRateAvg: 168.0502949,
         incentiveYears: 10,
         propertyTypes: {
-            sfdetached: {
+            [PropertyTypes.singleFamilyDetached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            historic: {
+            [PropertyTypes.historic]: {
                 rehab: true,
                 minInvestment: 0.05,
                 rebate: 1
