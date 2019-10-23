@@ -29,7 +29,8 @@ class NRACalculator extends React.Component {
       estimates: "",
       isHistorical: false,
       investmentType: "",
-      propertyType: ""
+      propertyType: "",
+      eligibility: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }

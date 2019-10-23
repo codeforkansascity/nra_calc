@@ -7,28 +7,38 @@ export const calculateTaxes = (amount, millRate) => {
 
 /************************ START NEW STUFF ************************/
 
-export const calculateEligibility = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
+export const getEligibility = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
 
     let propertyEligible = true;
     let investmentEligible = true;
     const errors = [];
 
-    const zonePropertyTypes = zoneData.get(propertyType);
+    const zonePropertyTypes = zoneData.get(zone).propertyTypes;
     const assessedValue = startingValue * assessmentPercentage;
 
-    if (!zonePropertyTypes.hasOwnKey(propertyType)) {
+    // eslint-disable-next-line no-prototype-builtins
+    if (!zonePropertyTypes.hasOwnProperty(propertyType)) {
         propertyEligible = false;
-        errors.push(`This property type doesn't fall under the guidelines for zone ${zone}`);
+        errors.push({
+            category: 'propertyType',
+            message: `This property type doesn't fall under the guidelines for zone ${zone}`
+        });
     } else if (!zonePropertyTypes[propertyType][investmentType]) {
         propertyEligible = false;
-        errors.push(`This investment type doesn't fall under the guidelines for zone ${zone}`);
+        errors.push({
+            category: 'investmentType',
+            message: `This investment type doesn't fall under the guidelines for zone ${zone}`
+        });
     }
 
     if (zonePropertyTypes[propertyType]) {
-        const rawMinInvestment = zonePropertyTypes[propertyType][minInvestment];
+        const rawMinInvestment = zonePropertyTypes[propertyType]['minInvestment'];
         const minInvestment = rawMinInvestment <= 1 ? rawMinInvestment * assessedValue : rawMinInvestment;
-        const eligible = (valueAfterInvestment - startingValue) >= minInvestment;
-        if (!eligible) errors.push(`The minimum investment for this property type and zone is ${minInvestment}`);
+        investmentEligible = (valueAfterInvestment - startingValue) >= minInvestment;
+        if (!investmentEligible) errors.push({
+            category: 'propertyType',
+            message: `Investment doesn't meet the minimum of ${minInvestment} for this property type and zone.`
+        });
     } else {
         investmentEligible = false;
     }
@@ -106,7 +116,15 @@ const zoneData = new Map([
         millRateLow: 166.699688,
         millRateHigh: 184.882947,
         millRateAvg: 168.0502949,
-        incentiveYears: 10
+        incentiveYears: 10,
+        propertyTypes: {
+            sfdetached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            }
+        }
     }],
     ['Area 2 East', {
         millRateLow: 151.970885,
