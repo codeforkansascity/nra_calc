@@ -26,11 +26,12 @@ class NRACalculator extends React.Component {
       current: "",
       valueAfterInvestment: "",
       zone: "",
-      estimates: "",
+      estimates: {},
       isHistorical: false,
       investmentType: "",
       propertyType: "",
-      eligibility: {}
+      eligibility: {},
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -77,8 +78,17 @@ class NRACalculator extends React.Component {
 
   handleSubmit() {
     if (this.state.current && this.state.valueAfterInvestment && this.state.zone) {
+      const estimates = getNRAEstimates(
+        this.state.current,
+        this.state.valueAfterInvestment,
+        this.state.investmentType,
+        this.state.propertyType,
+        this.state.zone
+        );
       this.setState({
-        estimates: getNRAEstimates(this.state.current, this.state.valueAfterInvestment, this.state.zone)
+        estimates,
+        eligibility: estimates.eligibility,
+        errors: estimates.eligibility.errors
       });
       console.log(this.state.estimates);
     }
@@ -171,7 +181,7 @@ class NRACalculator extends React.Component {
               </Button>
 
               { /* Calculation results */ }
-              { this.state.estimates &&
+              { this.state.estimates.estAverage &&
                 <Segment basic textAlign="center">
                   <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
 
