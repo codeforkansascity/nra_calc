@@ -31,8 +31,8 @@
     "postbuild": "npm run snapshot && npm run set-docs",
     "set-docs": "rm -r ../docs && cp -r build/ ../docs",
     "snapshot": "react-snapshot",
-    "test": "react-scripts test",
-    "test:nowatch": "CI=true npm test",
+    "test:watch": "react-scripts test",
+    "test": "CI=true react-scripts test",
     "eject": "react-scripts eject"
   },
   "reactSnapshot": {
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test:nowatch && eslint src/**/*.{js,jsx}"
+      "pre-commit": "npm run test && eslint src/**/*.{js,jsx}"
     }
   },
   "browserslist": {
