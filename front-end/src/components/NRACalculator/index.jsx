@@ -4,19 +4,22 @@ import './NRACalculator.scss';
 import { Button, Icon, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
+import PropertyTypes from './PropertyTypes';
 
 //array of property type options for drop-down input
 const HomeOptions = [
-  {key: 's', text: 'Single-Family Detached', value: 'sfdetached'},
-  {key: 'm', text: 'Multi-Family', value: 'mf'},
-  {key: 'oh', text: 'Other', value: 'other'}
+  {key: 's', text: 'Single-Family Detached', value: PropertyTypes.singleFamilyDetached},
+  {key: 'd', text: 'Duplex Single-Family Attached', value: PropertyTypes.duplexSingleFamilyAttached},
+  {key: 't', text: 'Townhomes Single-Family Attached', value: PropertyTypes.townhomeSingleFamilyAttached},
+  {key: 'sd', text: 'Single Duplex', value: PropertyTypes.singleDuplex},
+  {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily}
 ]
 
 //array of improvement type options for drop-down input
 const ImprovOptions = [
   {key: 'c', text: 'New Construction', value: 'new'},
   {key: 'r', text: 'Rehabilitation', value: 'rehab'},
-  {key: 'oi', text: 'Other', value: 'other'}
+  {key: 'o', text: 'Other', value: 'other'}
 ]
 
 class NRACalculator extends React.Component {
