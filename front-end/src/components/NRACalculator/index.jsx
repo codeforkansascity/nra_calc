@@ -29,44 +29,64 @@ class NRACalculator extends React.Component {
     super(props)
     this.state = {
       current: "",
-      afterImprovements: "",
+      valueAfterInvestment: "",
       zone: "",
-      estimates: ""
+      estimates: "",
+      isHistorical: false,
+      investmentType: "",
+      propertyType: ""
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleCurrent = e => {
+  handleCurrent = (e, data) => {
     this.setState({
-      current: cleanNumber(e.target.value),
+      current: cleanNumber(data.value),
     })
   }
 
-  handleImprovements = e => {
+  handleValueAfterInvestment = (e, data) => {
     this.setState({
-      afterImprovements: cleanNumber(e.target.value),
+      valueAfterInvestment: cleanNumber(data.value),
     })
   }
 
-  handleZone = e => {
+  handleHistorical = (e, data) => {
     this.setState({
-      zone: cleanNumber(e.target.value),
+      isHistorical: data.checked,
     })
   }
 
-  setZoneFromMap = e => {
-      this.setState({ zone: e });
+  handleInvestmentType = (e, data) => {
+    this.setState({
+      investmentType: data.value,
+    })
+  }
+
+  handlePropertyType = (e, data) => {
+    this.setState({
+      propertyType: data.value,
+    })
+  }
+
+  handleZone = (e, data) => {
+    this.setState({
+      zone: cleanNumber(data.value),
+    })
+  }
+
+  setZoneFromMap = zone => {
+      this.setState({ zone });
   }
 
   handleSubmit() {
-    if (this.state.current && this.state.afterImprovements && this.state.zone) {
+    if (this.state.current && this.state.valueAfterInvestment && this.state.zone) {
       this.setState({
-        estimates: getNRAEstimates(this.state.current, this.state.afterImprovements, this.state.zone)
+        estimates: getNRAEstimates(this.state.current, this.state.valueAfterInvestment, this.state.zone)
       });
       console.log(this.state.estimates);
     }
   }
-
 
   render = () => {
     return (
@@ -88,13 +108,13 @@ class NRACalculator extends React.Component {
                     <Label>$</Label>
                     <input />
                   </Form.Input>
-                  {/** Est. value after improvements form input **/}
+                  {/** Est. Value After Investment form input **/}
                   <Form.Input
                     fluid
-                    label="Est. Value After Improvements"
+                    label="Est. Value After Investment"
                     labelPosition="left"
-                    placeholder='Est. Value After Improvements'
-                    onChange={this.handleImprovements}>
+                    placeholder='Est. Value After Investment'
+                    onChange={this.handleValueAfterInvestment}>
                     <Label>$</Label>
                     <input />
                   </Form.Input>
@@ -102,25 +122,34 @@ class NRACalculator extends React.Component {
 
               {/* Dropdown inputs grouped together */}
               <Form.Group
-                grouped>
+                widths='equal'>
                   {/** Dropdown input for improvement type **/}
                   <Form.Select
                     fluid
-                    label='Property Improvement Type'
+                    label='Investment Type'
                     options={ImprovOptions}
-                    placeholder='Property Improvement Type'/>
+                    placeholder='Investment Type'
+                    onChange={this.handleInvestmentType}  
+                    />
                   {/** Dropdown input for home type **/}
                   <Form.Select
                     fluid
                     label='Building Type'
                     options={HomeOptions}
-                    placeholder='Building Type'/>
+                    placeholder='Building Type'
+                    onChange={this.handlePropertyType}  
+                    />
               </Form.Group>
 
 
               {/* Checkbox to mark historical properties. No functionality yet. */}
-              <Form.Checkbox 
-                label='This is a Historical Property'/>
+              <Form.Group grouped>
+                <label>Other</label>
+                <Form.Checkbox 
+                  label='This is a Historical Property'
+                  onChange={this.handleHistorical}
+                />
+              </Form.Group>
 
               {/** Zone picker. Opens map modal **/}
               <ZonePicker 
@@ -130,7 +159,15 @@ class NRACalculator extends React.Component {
                 zone={this.state.zone}/>
 
               {/** Submit button **/}
-              <Button color='blue'
+              <Button
+                disabled={
+                  !this.state.current
+                  || !this.state.valueAfterInvestment
+                  || !this.state.zone
+                  || !this.state.investmentType
+                  || !this.state.propertyType
+                }
+                color='blue'
                 fluid size='large'
                 onClick={this.handleSubmit}>
                 <Icon name="calculator"/>
@@ -142,23 +179,23 @@ class NRACalculator extends React.Component {
                 <Segment basic textAlign="center">
                   <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
 
-                  <p><b>Pay Per Year:</b> ${
+                  <p><b>You pay</b> ${
                     formatNumber(this.state.estimates.estLow.payPerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.payPerYear)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.payPerYear)}</p>
+                    } in taxes each year</p>
 
-                  <p><b>Savings Per Year:</b> ${
+                  <p><b>You save</b> ${
                     formatNumber(this.state.estimates.estLow.savePerYear)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savePerYear)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savePerYear)}</p>
+                    } in taxes per year</p>
 
-                  <p><b>{this.state.estimates.estAverage.incentiveYears} Year Savings:</b> ${
+                  <p><b>Over {this.state.estimates.estAverage.incentiveYears} years, you save</b> ${
                       formatNumber(this.state.estimates.estLow.savings)
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savings)
-                    }, Avg: ${formatNumber(this.state.estimates.estAverage.savings)}</p>
+                    } in taxes.</p>
                 </Segment>}
 
             </Segment>
