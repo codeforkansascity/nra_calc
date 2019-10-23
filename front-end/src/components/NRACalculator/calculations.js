@@ -23,7 +23,7 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         errors.push({
             id: errorID += 1,
             category: 'propertyType',
-            message: `This property type doesn't fall under the guidelines for zone ${zone}`
+            message: `This property type doesn't fall under the guidelines for ${zone}`
         });
     } else if (!zonePropertyTypes[propertyType][investmentType]) {
         propertyEligible = false;
