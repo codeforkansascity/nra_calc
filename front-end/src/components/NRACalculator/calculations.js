@@ -23,14 +23,14 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         errors.push({
             id: errorID += 1,
             category: 'propertyType',
-            message: `This property type doesn't fall under the guidelines for ${zone}`
+            message: `This property type doesn't fall under the guidelines for ${zone}.`
         });
     } else if (!zonePropertyTypes[propertyType][investmentType]) {
         propertyEligible = false;
         errors.push({
             id: errorID += 1,
             category: 'investmentType',
-            message: `The provided investment type doesn't fit the guidelines for this property type in ${zone}`
+            message: `The provided investment type doesn't fit the guidelines for this property type in ${zone}.`
         });
     }
 
