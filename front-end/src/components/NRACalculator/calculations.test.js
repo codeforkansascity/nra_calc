@@ -1,8 +1,9 @@
 import { getEligibility, getNRAEstimates } from './calculations';
+import PropertyTypes from './PropertyTypes';
 
 describe('getEligibility', () => {
   test('Returns accurate results for a qualifying property/investment', () => {
-    const eligibilityResult = getEligibility(10000, 10172.5, 'new', 'sfdetached', 'Area 1');
+    const eligibilityResult = getEligibility(10000, 10172.5, 'new', PropertyTypes.singleFamilyDetached, 'Area 1');
     expect(eligibilityResult.propertyEligible).toBe(true);
     expect(eligibilityResult.investmentEligible).toBe(true);
     expect(eligibilityResult.isEligible).toBe(true);
@@ -10,7 +11,7 @@ describe('getEligibility', () => {
   });
 
   test('Returns accurate results for a qualifying property and NON-qualifying investment', () => {
-    const eligibilityResult = getEligibility(10000, 10100, 'new', 'sfdetached', 'Area 1');
+    const eligibilityResult = getEligibility(10000, 10100, 'new', PropertyTypes.singleFamilyDetached, 'Area 1');
     expect(eligibilityResult.propertyEligible).toBe(true);
     expect(eligibilityResult.investmentEligible).toBe(false);
     expect(eligibilityResult.isEligible).toBe(false);
@@ -28,7 +29,7 @@ describe('getEligibility', () => {
 
 describe('getNRAEstimates', () => {
   test('Returns null for estimates, along with eligibility information when not eligible', () => {
-    const estimates = getNRAEstimates(10000, 10100, 'new', 'sfdetached', 'Area 1');
+    const estimates = getNRAEstimates(10000, 10100, 'new', PropertyTypes.singleFamilyDetached, 'Area 1');
     expect(estimates.estLow).toBe(undefined);
     expect(estimates.estHigh).toBe(undefined);
     expect(estimates.estAverage).toBe(undefined);
@@ -36,7 +37,7 @@ describe('getNRAEstimates', () => {
   });
 
   test('Returns estimates and eligibility information when eligible', () => {
-    const estimates = getNRAEstimates(10000, 100000, 'new', 'sfdetached', 'Area 1');
+    const estimates = getNRAEstimates(10000, 100000, 'new', PropertyTypes.singleFamilyDetached, 'Area 1');
     expect(estimates).toEqual({
       estHigh:{
         incentiveYears:10,
