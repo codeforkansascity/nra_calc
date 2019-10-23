@@ -1,3 +1,5 @@
+import PropertyTypes from './PropertyTypes';
+
 // State-wide constant value
 const assessmentPercentage = 0.115;
 
@@ -5,40 +7,93 @@ export const calculateTaxes = (amount, millRate) => {
     return ((amount / 1000) * millRate) - 44;
 }
 
-export const getNRAEstimates = (startingValue, estValueAfterImprovements, zone) => {
+export const getEligibility = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
+
+    let propertyEligible = true;
+    let investmentEligible = true;
+    const errors = [];
+    let errorID = 0;
+
+    const zonePropertyTypes = zoneData.get(zone).propertyTypes;
+    const assessedValue = startingValue * assessmentPercentage;
+
+    // eslint-disable-next-line no-prototype-builtins
+    if (!zonePropertyTypes || !zonePropertyTypes.hasOwnProperty(propertyType)) {
+        propertyEligible = false;
+        errors.push({
+            id: errorID += 1,
+            category: 'propertyType',
+            message: `This property type doesn't fall under the guidelines for zone ${zone}`
+        });
+    } else if (!zonePropertyTypes[propertyType][investmentType]) {
+        propertyEligible = false;
+        errors.push({
+            id: errorID += 1,
+            category: 'investmentType',
+            message: `The provided investment type doesn't fit the guidelines for this property type in ${zone}`
+        });
+    }
+
+    if (zonePropertyTypes && zonePropertyTypes[propertyType] && propertyEligible) {
+        const rawMinInvestment = zonePropertyTypes[propertyType]['minInvestment'];
+        const minInvestment = rawMinInvestment <= 1 ? rawMinInvestment * assessedValue : rawMinInvestment;
+        const totalInvestment = valueAfterInvestment - startingValue;
+        investmentEligible = totalInvestment >= minInvestment;
+        if (!investmentEligible) errors.push({
+            id: errorID += 1,
+            category: 'minimumInvestment',
+            message: `Investment of $${totalInvestment} doesn't meet the minimum of $${minInvestment} for this property type and zone.`
+        });
+    } else {
+        investmentEligible = false;
+    }
+
+    return {
+        isEligible: propertyEligible && investmentEligible,
+        propertyEligible,
+        investmentEligible,
+        errors
+    }
+}
+
+export const getNRAEstimates = (startingValue, valueAfterInvestment, investmentType, propertyType, zone) => {
+
+    const eligibility = getEligibility(startingValue, valueAfterInvestment, investmentType, propertyType, zone);
+    const { isEligible } = eligibility;
 
     const { millRateHigh, millRateLow, millRateAvg, incentiveYears } = zoneData.get(zone);
 
     // Calculate based on high, low, and average mill rate within given zone
     // Eventually we hope to create a more granular estimate based on address,
     // but as a first pass, this removes a lot of complexity
-    const estHigh = calculateRebate(startingValue, estValueAfterImprovements, millRateHigh, incentiveYears);
-    const estLow = calculateRebate(startingValue, estValueAfterImprovements, millRateLow, incentiveYears);
-    const estAverage = calculateRebate(startingValue, estValueAfterImprovements, millRateAvg, incentiveYears);
+    const estHigh = calculateRebate(startingValue, valueAfterInvestment, millRateHigh, incentiveYears);
+    const estLow = calculateRebate(startingValue, valueAfterInvestment, millRateLow, incentiveYears);
+    const estAverage = calculateRebate(startingValue, valueAfterInvestment, millRateAvg, incentiveYears);
 
     return {
-        estHigh,
-        estLow,
-        estAverage,
+        estHigh: isEligible ? estHigh : undefined,
+        estLow: isEligible ? estLow : undefined,
+        estAverage: isEligible ? estAverage : undefined,
+        eligibility
     };
 
 }
 
 // Calculate NRA tax incentive
-export const calculateRebate = (startingValue, estValueAfterImprovements, millRate, incentiveYears) => {
+export const calculateRebate = (startingValue, valueAfterInvestment, millRate, incentiveYears) => {
 
     // Calculate current taxes
     const currentAssessedValue = startingValue * assessmentPercentage;
     const currentTaxes = calculateTaxes(currentAssessedValue, millRate);
 
     // Calculate new taxes
-    const fivePercentImprovements = (estValueAfterImprovements - startingValue) * 0.05;
-    const newTaxableAmount = startingValue + fivePercentImprovements;
+    const fivePercentInvestment = (valueAfterInvestment - startingValue) * 0.05;
+    const newTaxableAmount = startingValue + fivePercentInvestment;
     const newTaxableAmountAssessed = newTaxableAmount * assessmentPercentage;
     const newTaxes = calculateTaxes(newTaxableAmountAssessed, millRate);
 
     // Calculate incremental tax values
-    const incrementalAppraisedValue = estValueAfterImprovements - fivePercentImprovements;
+    const incrementalAppraisedValue = valueAfterInvestment - fivePercentInvestment;
     const incrementalAssessedValue = incrementalAppraisedValue * assessmentPercentage;
     const incrementalTaxSavings = (incrementalAssessedValue / 1000) * millRate;
 
@@ -67,7 +122,20 @@ const zoneData = new Map([
         millRateLow: 166.699688,
         millRateHigh: 184.882947,
         millRateAvg: 168.0502949,
-        incentiveYears: 10
+        incentiveYears: 10,
+        propertyTypes: {
+            [PropertyTypes.singleFamilyDetached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.historic]: {
+                rehab: true,
+                minInvestment: 0.05,
+                rebate: 1
+            }
+        }
     }],
     ['Area 2 East', {
         millRateLow: 151.970885,

@@ -1,5 +1,6 @@
 import React from 'react';
 import './AppFooter.scss';
+import PropTypes from 'prop-types';
 
 class AppFooter extends React.Component {
   render = () => {
@@ -9,6 +10,10 @@ class AppFooter extends React.Component {
       </footer>
     );
   }
+}
+
+AppFooter.propTypes = {
+  children: PropTypes.any
 }
 
 export default AppFooter;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './NRACalculator.scss';
 //import for Semantic-UI components
-import { Button, Icon, Form, Grid, Segment, GridColumn, Label } from 'semantic-ui-react'
+import { Button, Icon, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
 import PropertyTypes from './PropertyTypes';
@@ -10,15 +10,16 @@ import PropertyTypes from './PropertyTypes';
 const HomeOptions = [
   {key: 's', text: 'Single-Family Detached', value: PropertyTypes.singleFamilyDetached},
   {key: 'd', text: 'Duplex Single-Family Attached', value: PropertyTypes.duplexSingleFamilyAttached},
-  {key: 't', text: 'Townhomes Single-Family Attached', value: PropertyTypes.townhomeSingleFamilyAttached},
+  {key: 't', text: 'Townhome Single-Family Attached', value: PropertyTypes.townhomeSingleFamilyAttached},
   {key: 'sd', text: 'Single Duplex', value: PropertyTypes.singleDuplex},
-  {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily}
+  {key: 'm', text: 'Multi-Family', value: PropertyTypes.multiFamily},
+  {key: 'h', text: 'Historic', value: PropertyTypes.historic}
 ]
 
 //array of improvement type options for drop-down input
 const ImprovOptions = [
-  {key: 'c', text: 'New Construction', value: 'construction'},
-  {key: 'r', text: 'Rehabilitation', value: 'rehabilitation'},
+  {key: 'c', text: 'New Construction', value: 'new'},
+  {key: 'r', text: 'Rehabilitation', value: 'rehab'},
   {key: 'o', text: 'Other', value: 'other'}
 ]
 
@@ -29,10 +30,11 @@ class NRACalculator extends React.Component {
       current: "",
       valueAfterInvestment: "",
       zone: "",
-      estimates: "",
-      isHistorical: false,
+      estimates: {},
       investmentType: "",
-      propertyType: ""
+      propertyType: "",
+      eligibility: {},
+      errors: []
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -46,12 +48,6 @@ class NRACalculator extends React.Component {
   handleValueAfterInvestment = (e, data) => {
     this.setState({
       valueAfterInvestment: cleanNumber(data.value),
-    })
-  }
-
-  handleHistorical = (e, data) => {
-    this.setState({
-      isHistorical: data.checked,
     })
   }
 
@@ -79,10 +75,21 @@ class NRACalculator extends React.Component {
 
   handleSubmit() {
     if (this.state.current && this.state.valueAfterInvestment && this.state.zone) {
+      const estimates = getNRAEstimates(
+        this.state.current,
+        this.state.valueAfterInvestment,
+        this.state.investmentType,
+        this.state.propertyType,
+        this.state.zone
+        );
       this.setState({
-        estimates: getNRAEstimates(this.state.current, this.state.valueAfterInvestment, this.state.zone)
+        estimates,
+        eligibility: estimates.eligibility,
+        errors: estimates.eligibility.errors,
+        investmentTypeError: estimates.eligibility.errors.map(error => error.category === 'investmentType')[0],
+        propertyTypeError: estimates.eligibility.errors.map(error => error.category === 'propertyType')[0],
+        valueAfterInvestmentError: estimates.eligibility.errors.map(error => error.category === 'minimumInvestment')[0]
       });
-      console.log(this.state.estimates);
     }
   }
 
@@ -109,6 +116,7 @@ class NRACalculator extends React.Component {
                   {/** Est. Value After Investment form input **/}
                   <Form.Input
                     fluid
+                    error={this.state.valueAfterInvestmentError}
                     label="Est. Value After Investment"
                     labelPosition="left"
                     placeholder='Est. Value After Investment'
@@ -124,6 +132,7 @@ class NRACalculator extends React.Component {
                   {/** Dropdown input for improvement type **/}
                   <Form.Select
                     fluid
+                    error={this.state.investmentTypeError}
                     label='Investment Type'
                     options={ImprovOptions}
                     placeholder='Investment Type'
@@ -132,21 +141,12 @@ class NRACalculator extends React.Component {
                   {/** Dropdown input for home type **/}
                   <Form.Select
                     fluid
-                    label='Building Type'
+                    error={this.state.propertyTypeError}
+                    label='Property Type'
                     options={HomeOptions}
                     placeholder='Building Type'
                     onChange={this.handlePropertyType}  
                     />
-              </Form.Group>
-
-
-              {/* Checkbox to mark historical properties. No functionality yet. */}
-              <Form.Group grouped>
-                <label>Other</label>
-                <Form.Checkbox 
-                  label='This is a Historical Property'
-                  onChange={this.handleHistorical}
-                />
               </Form.Group>
 
               {/** Zone picker. Opens map modal **/}
@@ -173,7 +173,7 @@ class NRACalculator extends React.Component {
               </Button>
 
               { /* Calculation results */ }
-              { this.state.estimates &&
+              { this.state.estimates.estAverage &&
                 <Segment basic textAlign="center">
                   <p>These estimates provide a range depending on the mill rate, which vary within each zone.</p>
 
@@ -194,7 +194,13 @@ class NRACalculator extends React.Component {
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savings)
                     } in taxes.</p>
-                </Segment>}
+                </Segment>
+              }
+              { this.state.errors.length > 0 &&
+                <Segment basic textAlign="center">
+                  {this.state.errors.map(error => <Message color="red" key={error.id}>{error.message}</Message>)}
+                </Segment>
+              }
 
             </Segment>
           </Form>

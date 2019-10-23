@@ -1,5 +1,6 @@
 import React from 'react';
 import './AppHeader.scss';
+import PropTypes from 'prop-types';
 
 class AppHeader extends React.Component {
   render = () => {
@@ -9,6 +10,10 @@ class AppHeader extends React.Component {
       </header>
     );
   }
+}
+
+AppHeader.propTypes = {
+  children: PropTypes.any
 }
 
 export default AppHeader;

@@ -3,7 +3,8 @@ const PropertyTypes = {
   duplexSingleFamilyAttached: 'singleAttachedDuplex',
   townhomeSingleFamilyAttached: 'singleAttachedTownhome',
   singleDuplex: 'singleDuplex',
-  multiFamily: 'multi'
+  multiFamily: 'multi',
+  historic: 'historic'
 }
 
 export default PropertyTypes
