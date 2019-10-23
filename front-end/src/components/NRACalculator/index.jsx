@@ -1,21 +1,21 @@
 import React from 'react';
 import './NRACalculator.scss';
 //import for Semantic-UI components
-import { Button, Icon, Form, Grid, Segment, GridColumn, Label } from 'semantic-ui-react'
+import { Button, Icon, Form, Grid, Segment, GridColumn, Label, Message } from 'semantic-ui-react'
 import { getNRAEstimates } from './calculations';
 import ZonePicker from '../ZonePicker';
 
 //array of property type options for drop-down input
 const HomeOptions = [
-  {key: 's', text: 'Single-Family', value: 'single'},
-  {key: 'm', text: 'Multi-Family', value: 'multi'},
+  {key: 's', text: 'Single-Family Detached', value: 'sfdetached'},
+  {key: 'm', text: 'Multi-Family', value: 'mf'},
   {key: 'oh', text: 'Other', value: 'other'}
 ]
 
 //array of improvement type options for drop-down input
 const ImprovOptions = [
-  {key: 'c', text: 'New Construction', value: 'construction'},
-  {key: 'r', text: 'Rehabilitation', value: 'rehabilitation'},
+  {key: 'c', text: 'New Construction', value: 'new'},
+  {key: 'r', text: 'Rehabilitation', value: 'rehab'},
   {key: 'oi', text: 'Other', value: 'other'}
 ]
 
@@ -202,7 +202,13 @@ class NRACalculator extends React.Component {
                     } - ${
                       formatNumber(this.state.estimates.estHigh.savings)
                     } in taxes.</p>
-                </Segment>}
+                </Segment>
+              }
+              { this.state.errors.length > 0 &&
+                <Segment basic textAlign="center">
+                  {this.state.errors.map(error => <Message color="red" key={error.id}>{error.message}</Message>)}
+                </Segment>
+              }
 
             </Segment>
           </Form>

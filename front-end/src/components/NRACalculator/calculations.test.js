@@ -29,9 +29,9 @@ describe('getEligibility', () => {
 describe('getNRAEstimates', () => {
   test('Returns null for estimates, along with eligibility information when not eligible', () => {
     const estimates = getNRAEstimates(10000, 10100, 'new', 'sfdetached', 'Area 1');
-    expect(estimates.estLow).toBe(null);
-    expect(estimates.estHigh).toBe(null);
-    expect(estimates.estAverage).toBe(null);
+    expect(estimates.estLow).toBe(undefined);
+    expect(estimates.estHigh).toBe(undefined);
+    expect(estimates.estAverage).toBe(undefined);
     expect(estimates.eligibility.isEligible).toBe(false);
   });
 

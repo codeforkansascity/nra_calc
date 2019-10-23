@@ -12,32 +12,37 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
     let propertyEligible = true;
     let investmentEligible = true;
     const errors = [];
+    let errorID = 0;
 
     const zonePropertyTypes = zoneData.get(zone).propertyTypes;
     const assessedValue = startingValue * assessmentPercentage;
 
     // eslint-disable-next-line no-prototype-builtins
-    if (!zonePropertyTypes.hasOwnProperty(propertyType)) {
+    if (!zonePropertyTypes || !zonePropertyTypes.hasOwnProperty(propertyType)) {
         propertyEligible = false;
         errors.push({
+            id: errorID += 1,
             category: 'propertyType',
             message: `This property type doesn't fall under the guidelines for zone ${zone}`
         });
     } else if (!zonePropertyTypes[propertyType][investmentType]) {
         propertyEligible = false;
         errors.push({
+            id: errorID += 1,
             category: 'investmentType',
-            message: `This investment type doesn't fall under the guidelines for zone ${zone}`
+            message: `The provided investment type doesn't fit the guidelines for this property type in ${zone}`
         });
     }
 
-    if (zonePropertyTypes[propertyType]) {
+    if (zonePropertyTypes && zonePropertyTypes[propertyType]) {
         const rawMinInvestment = zonePropertyTypes[propertyType]['minInvestment'];
         const minInvestment = rawMinInvestment <= 1 ? rawMinInvestment * assessedValue : rawMinInvestment;
-        investmentEligible = (valueAfterInvestment - startingValue) >= minInvestment;
+        const totalInvestment = valueAfterInvestment - startingValue;
+        investmentEligible = totalInvestment >= minInvestment;
         if (!investmentEligible) errors.push({
+            id: errorID += 1,
             category: 'propertyType',
-            message: `Investment doesn't meet the minimum of ${minInvestment} for this property type and zone.`
+            message: `Investment of $${totalInvestment} doesn't meet the minimum of $${minInvestment} for this property type and zone.`
         });
     } else {
         investmentEligible = false;
@@ -69,9 +74,9 @@ export const getNRAEstimates = (startingValue, valueAfterInvestment, investmentT
     const estAverage = calculateRebate(startingValue, valueAfterInvestment, millRateAvg, incentiveYears);
 
     return {
-        estHigh: isEligible ? estHigh : null,
-        estLow: isEligible ? estLow : null,
-        estAverage: isEligible ? estAverage : null,
+        estHigh: isEligible ? estHigh : undefined,
+        estLow: isEligible ? estLow : undefined,
+        estAverage: isEligible ? estAverage : undefined,
         eligibility
     };
 
