@@ -73,7 +73,7 @@ class ZonePicker extends React.Component {
 ZonePicker.propTypes = {
   zone: PropTypes.string,
   setZoneFromMap: PropTypes.func,
-  message: PropTypes.string,
+  message: PropTypes.any,
   successColor: PropTypes.string
 }
 
