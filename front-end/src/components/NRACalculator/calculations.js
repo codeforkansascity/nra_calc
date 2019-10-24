@@ -124,37 +124,37 @@ const zoneData = new Map([
         millRateAvg: 168.0502949,
         incentiveYears: 10,
         propertyTypes: {
-            singleFamilyDetached: {
+            [PropertyTypes.singleFamilyDetached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            duplexSingleFamilyAttached: {
+            [PropertyTypes.duplexSingleFamilyAttached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            townhomeSingleFamilyAttached: {
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            singleDuplex: {
+            [PropertyTypes.singleDuplex]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            multiFamily: {
+            [PropertyTypes.multiFamily]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            historic: {
+            [PropertyTypes.historic]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.05,
@@ -166,7 +166,45 @@ const zoneData = new Map([
         millRateLow: 151.970885,
         millRateHigh: 187.634256,
         millRateAvg: 168.6046749,
-        incentiveYears: 5
+        incentiveYears: 5,
+        propertyTypes: {
+            [PropertyTypes.singleFamilyDetached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.duplexSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.singleDuplex]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.multiFamily]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.historic]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.10,
+                rebate: 1.00
+            }
+        }
     }],
     ['Area 2 East - State Avenue Corridor', {
         millRateLow: 166.699688,
@@ -178,7 +216,45 @@ const zoneData = new Map([
         millRateLow: 166.699688,
         millRateHigh: 176.91593,
         millRateAvg: 166.7490233,
-        incentiveYears: 5
+        incentiveYears: 5,
+        propertyTypes: {
+            [PropertyTypes.singleFamilyDetached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.duplexSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.singleDuplex]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.multiFamily]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.historic]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.10,
+                rebate: 1.00
+            }
+        }
     }],
     ['Area 3', {
         millRateLow: 172.760032,
@@ -186,37 +262,37 @@ const zoneData = new Map([
         millRateAvg: 172.8878387,
         incentiveYears: 5,
         propertyTypes: {
-            singleFamilyDetached: {
+            [PropertyTypes.singleFamilyDetached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            duplexSingleFamilyAttached: {
+            [PropertyTypes.duplexSingleFamilyAttached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            townhomeSingleFamilyAttached: {
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            singleDuplex: {
+            [PropertyTypes.singleDuplex]: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            multiFamily: {
+            [PropertyTypes.multiFamily]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            historic: {
+            [PropertyTypes.historic]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
@@ -230,25 +306,25 @@ const zoneData = new Map([
         millRateAvg: 174.3241988,
         incentiveYears: 5,
         propertyTypes: {
-            singleFamilyDetached: {
+            [PropertyTypes.singleFamilyDetached]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            duplexSingleFamilyAttached: {
+            [PropertyTypes.duplexSingleFamilyAttached]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            townhomeSingleFamilyAttached: {
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            singleDuplex: {
+            [PropertyTypes.singleDuplex]: {
                 new: false,
                 rehab: true,
                 minInvestment: 0.15,
