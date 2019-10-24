@@ -124,16 +124,41 @@ const zoneData = new Map([
         millRateAvg: 168.0502949,
         incentiveYears: 10,
         propertyTypes: {
-            [PropertyTypes.singleFamilyDetached]: {
+            singleFamilyDetached: {
                 new: true,
                 rehab: true,
                 minInvestment: 0.15,
                 rebate: 0.95
             },
-            [PropertyTypes.historic]: {
+            duplexSingleFamilyAttached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            townhomeSingleFamilyAttached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            singleDuplex: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            multiFamily: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            historic: {
+                new: false,
                 rehab: true,
                 minInvestment: 0.05,
-                rebate: 1
+                rebate: 1.00
             }
         }
     }],
@@ -159,13 +184,77 @@ const zoneData = new Map([
         millRateLow: 172.760032,
         millRateHigh: 180.7673,
         millRateAvg: 172.8878387,
-        incentiveYears: 5
+        incentiveYears: 5,
+        propertyTypes: {
+            singleFamilyDetached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            duplexSingleFamilyAttached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            townhomeSingleFamilyAttached: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            singleDuplex: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            multiFamily: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            historic: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 1.00
+            }
+        }
     }],
     ['Area 4', {
         millRateLow: 166.699688,
         millRateHigh: 176.931593,
         millRateAvg: 174.3241988,
-        incentiveYears: 5
+        incentiveYears: 5,
+        propertyTypes: {
+            singleFamilyDetached: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            duplexSingleFamilyAttached: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            townhomeSingleFamilyAttached: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            singleDuplex: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            }
+        }
     }],
     ['Bonner Springs Zone 3', {
         millRateLow: 166.87731,
