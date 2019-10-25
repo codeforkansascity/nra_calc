@@ -17,6 +17,20 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
     const zonePropertyTypes = zoneData.get(zone).propertyTypes;
     const assessedValue = startingValue * assessmentPercentage;
 
+    if (!zonePropertyTypes) {
+        propertyEligible = false;
+        investmentEligible = false;
+        errors.push({
+            message: `${zone} not yet implemented.`
+        });
+        return {
+            isEligible: propertyEligible && investmentEligible,
+            propertyEligible,
+            investmentEligible,
+            errors
+        }
+    }
+
     // eslint-disable-next-line no-prototype-builtins
     if (!zonePropertyTypes || !zonePropertyTypes.hasOwnProperty(propertyType)) {
         propertyEligible = false;
