@@ -24,25 +24,10 @@ It's hard for those who might benefit to understand benefits and details of the 
 
 When somebody does decide to take advantage of the NRA, it's hard to understand the process.
 
-# Team
-
-Currently, the team consists of:
-
-- Matt Cook: @mattcookxyz
-- Blake Bradford: @blakebford3
-- Filipe Gomes: @filipe-gomes
-- Dylan Cruse: @dylancruse
-- Jeff Krakenberg: @sparrowkeeper
-
 # Tech
 
-See the README of the [front-end](front-end/README.md) and back-end portions of the project for more details:
+See the README of the [front-end](front-end/README.md) portion of the project for more details:
 
 Front-end technologies:
 
 - React.js
-
-Proposed *options* for backend languages (if needed):
-
-- Node.js
-- Python
