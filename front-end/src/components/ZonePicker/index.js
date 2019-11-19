@@ -50,12 +50,12 @@ class ZonePicker extends React.Component {
             setZoneFromMap={this.props.setZoneFromMap}/>
           </Modal.Content>
           <Modal.Actions>
-          {!this.props.zone && <Button
+          {/* {!this.props.zone && <Button
           fluid
           size='large'
           color='blue'>
             {"Where is my zone?"}
-          </Button>}
+          </Button>} */}
           {this.props.zone && <Button
               primary
               fluid
