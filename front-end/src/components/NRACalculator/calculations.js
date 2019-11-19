@@ -21,7 +21,7 @@ export const getEligibility = (startingValue, valueAfterInvestment, investmentTy
         propertyEligible = false;
         investmentEligible = false;
         errors.push({
-            message: `${zone} not yet implemented.`
+            message: `${zone} is excluded from the NRA program at this time.`
         });
         return {
             isEligible: propertyEligible && investmentEligible,
@@ -224,7 +224,45 @@ const zoneData = new Map([
         millRateLow: 166.699688,
         millRateHigh: 172.831745,
         millRateAvg: 171.7744938,
-        incentiveYears: 5 // Don't know for sure yet
+        incentiveYears: 5,
+        propertyTypes: {
+            [PropertyTypes.singleFamilyDetached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.duplexSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.townhomeSingleFamilyAttached]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.singleDuplex]: {
+                new: true,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.multiFamily]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.15,
+                rebate: 0.95
+            },
+            [PropertyTypes.historic]: {
+                new: false,
+                rehab: true,
+                minInvestment: 0.10,
+                rebate: 1.00
+            }
+        }
     }],
     ['Area 2 West', {
         millRateLow: 166.699688,
@@ -349,19 +387,16 @@ const zoneData = new Map([
     ['Bonner Springs Zone 3', {
         millRateLow: 166.87731,
         millRateHigh: 166.87731,
-        millRateAvg: 166.87731,
-        incentiveYears: 5 // Don't know for sure yet
+        millRateAvg: 166.87731
     }],
     ['Bonner Springs Zone 4', {
         millRateLow: 166.87731,
         millRateHigh: 180.76073,
-        millRateAvg: 166.8845297,
-        incentiveYears: 5 // Don't know for sure yet
+        millRateAvg: 166.8845297
     }],
     ['Edwardsville', {
         millRateLow: 166.87731,
         millRateHigh: 180.76073,
-        millRateAvg: 180.6365491,
-        incentiveYears: 5 // Don't know for sure yet
+        millRateAvg: 180.6365491
     }]
 ]);
