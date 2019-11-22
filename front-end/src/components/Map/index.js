@@ -1,6 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, GeoJSON } from 'react-leaflet';
 import PropTypes from 'prop-types';
+import Search from './Search';
 
 class Map extends React.Component {
   constructor(props){
@@ -61,7 +62,8 @@ class Map extends React.Component {
           key={this.state.polygons}
           data={this.state.polygons}
           onClick={this.getAreaFromClick}
-          style={{color: "green"}}/>
+          style={{color: "green"}}
+          />
         
         {/* contains highlighted zone. currently alerts console about duplicate keys. will resolve error. */}
         {this.state.highlight && 
@@ -69,6 +71,8 @@ class Map extends React.Component {
             key={this.state.selection}
             data={this.state.selection}
             style={{color: "yellow"}}/>}
+
+        <Search />
 
       </LeafletMap>
     );
