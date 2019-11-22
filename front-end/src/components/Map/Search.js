@@ -2,6 +2,7 @@ import { Component } from "react";
 import L from "leaflet";
 import * as ELG from "esri-leaflet-geocoder";
 import { withLeaflet } from "react-leaflet";
+import PropTypes from 'prop-types';
 
 /* 
 Code attribution: solution to integrating search control with react-leaflet sourced from 
@@ -25,8 +26,12 @@ class Search extends Component {
   render() {
     return null;
   }
-
-  //Use proptypes? TODO
 }
+
+//Need to review valid proptypes. leaflet == component, map == object?
+Search.propTypes = {
+    leaflet: PropTypes.any,
+    map: PropTypes.any, 
+  }
 
 export default withLeaflet(Search);
