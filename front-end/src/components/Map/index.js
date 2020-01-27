@@ -8,10 +8,11 @@ class Map extends React.Component {
     super(props)
     this.state = {
       polygons: [],
-      position: [39.1155, -94.7478],
+      position: [39.1, -94.75],
       zoom: 11,
       selection: [],
-      highlight: false
+      highlight: false,
+      marker: []
     }
   }
 
@@ -45,15 +46,18 @@ class Map extends React.Component {
     this.setState({
       polygons: json,
     });
-    console.log(this.state.polygons)
   }
 
+
   render = () => {
+
     return (
       <LeafletMap
         style={{ width: '100%' }}
         center={this.state.position}
         zoom={this.state.zoom}
+        minZoom={11}
+        maxZoom={18}
         //disabled click zoom to prevent conflict with zone selection
         doubleClickZoom={false}>
         <TileLayer url='http://{s}.tile.osm.org/{z}/{x}/{y}.png' attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' />
@@ -65,7 +69,7 @@ class Map extends React.Component {
           style={{color: "green"}}
           />
         
-        {/* contains highlighted zone. currently alerts console about duplicate keys. will resolve error. */}
+        {/* contains highlighted zone */}
         {this.state.highlight && 
           <GeoJSON 
             key={this.state.selection}

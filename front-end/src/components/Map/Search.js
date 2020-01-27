@@ -10,17 +10,22 @@ Code attribution: solution to integrating search control with react-leaflet sour
 */
 
 class Search extends Component {
+
+
   componentDidMount() {
     const map = this.props.leaflet.map;
-    const searchControl = new ELG.Geosearch({zoomToResult: false}).addTo(map);
+    const searchControl = new ELG.Geosearch({zoomToResult: true, useMapBounds: true}).addTo(map);
     const results = new L.LayerGroup().addTo(map);
 
     searchControl.on("results", function(data) {
+
+      //if marker exists, remove it
       results.clearLayers();
-      for (let i = data.results.length - 1; i >= 0; i--) {
-        results.addLayer(L.marker(data.results[i].latlng));
-      }
+
+      //add marker to map
+      results.addLayer(L.marker(data.results[0].latlng));
     });
+
   }
 
   render() {
@@ -32,6 +37,7 @@ class Search extends Component {
 Search.propTypes = {
     leaflet: PropTypes.any,
     map: PropTypes.any, 
+    Coords: PropTypes.array
   }
 
 export default withLeaflet(Search);
